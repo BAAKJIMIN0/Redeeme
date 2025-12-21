@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# Redeems
+# Redeemi
 =======
 # React + TypeScript + Vite
 
