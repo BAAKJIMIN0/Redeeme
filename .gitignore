@@ -30,3 +30,9 @@ dist-ssr
 
 # Docker
 docker-data/
+
+# Font
+*.ttf
+*.otf
+*.woff
+*.woff2

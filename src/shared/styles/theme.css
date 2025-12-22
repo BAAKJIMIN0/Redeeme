@@ -1,0 +1,55 @@
+:root {
+  /* Base */
+  --color-black: #0F172A;
+  --color-white: #FFFFFF;
+
+  /* Text */
+  --color-text-black: #222222;
+  --color-text-gray:  #767a81;
+  --color-text-white: #F9FAFB;
+
+  /* Border / Divider */
+  --color-border-light: #DDDDDD;
+  --color-border-dark:  #1F2937;
+}
+
+@font-face {
+  font-family: 'BaseFont';
+  src: url('../fonts/SCDream2.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BaseFont';
+  src: url('../fonts/SCDream3.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BaseFont';
+  src: url('../fonts/SCDream4.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BaseFont';
+  src: url('../fonts/SCDream5.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BaseFont';
+  src: url('../fonts/SCDream6.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
