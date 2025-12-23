@@ -1,0 +1,29 @@
+import type { Game } from './types';
+
+export const GAME_LIST: Game[] = [
+  {
+    id: 1,
+    name: '블루 아카이브',
+    iconUrl: 'BlueArchive'
+  },
+  {
+    id: 2,
+    name: '명조',
+    iconUrl: 'Wuthering'
+  },
+  {
+    id: 3,
+    name: '원신',
+    iconUrl: 'Genshin'
+  },
+  {
+    id: 4,
+    name: '붕괴:스타레일',
+    iconUrl: 'StarRail'
+  },
+  {
+    id: 5,
+    name: '젠레스 존 제로',
+    iconUrl: 'ZZZ'
+  }
+];
