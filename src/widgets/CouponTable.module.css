@@ -3,6 +3,7 @@
   border-collapse: collapse;
   border: 1px solid var(--color-border-light);
   font-size: 14px;
+  font-weight: 400;
 }
 
 .table th,
@@ -13,9 +14,18 @@
   text-align: left;
 }
 
+.table td.centerText,
+.table th.centerText {
+  text-align: center;
+}
+
 .table td .codeDescription {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--color-text-gray);
+}
+
+.centerText {
+  text-align: center;
 }
 
 .colGame { width: 50px; }

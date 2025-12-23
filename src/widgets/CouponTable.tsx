@@ -24,7 +24,7 @@ function CouponTable() {
       </thead>
       <tbody>
         <tr>
-          <td>원신</td>
+          <td className={styles.centerText}>원신</td>
           <td>
             <div>GENSHIN2025</div>
             <div className={styles.codeDescription}>원신 2025년 기념 코드</div>
@@ -32,24 +32,24 @@ function CouponTable() {
           <td>GLOBAL</td>
           <td>원석 x100</td>
           <td>
-            <div>등록: 2025-01-05</div>
-            <div>마감: 2025-01-10</div>
+            <div className={styles.centerText}>등록: 2025-01-05</div>
+            <div className={styles.centerText}>마감: 2025-01-10</div>
           </td>
-          <td>D-3</td>
+          <td className={styles.centerText}>D-3</td>
         </tr>
         <tr>
-          <td>명조</td>
+          <td className={styles.centerText}>명조</td>
           <td>
             <div>GodGame</div>
-            <div className={styles.codeDescription}></div>
+            <div className={styles.codeDescription}>명조 정말 갓겜입니다.</div>
           </td>
           <td>ALL</td>
           <td>원석 x100</td>
           <td>
-            <div>등록: 2025-01-05</div>
-            <div>마감: 2025-01-10</div>
+            <div className={styles.centerText}>등록: 2025-01-05</div>
+            <div className={styles.centerText}>마감: 2025-01-10</div>
           </td>
-          <td>D-3</td>
+          <td className={styles.centerText}>D-3</td>
         </tr>
       </tbody>
     </table>
