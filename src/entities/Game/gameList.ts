@@ -25,5 +25,10 @@ export const GAME_LIST: Game[] = [
     id: 5,
     name: '젠레스 존 제로',
     iconUrl: 'ZZZ'
+  },
+  {
+    id: 6,
+    name: '승리의여신:니케',
+    iconUrl: 'Nikke'
   }
 ];

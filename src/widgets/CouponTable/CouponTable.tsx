@@ -1,4 +1,7 @@
 import styles from './CouponTable.module.css'
+import { COUPON_LIST } from '../../entities/Coupon/couponList';
+import { CouponItem } from '../../entities/Coupon/CouponItem';
+
 
 function CouponTable() {
   return(
@@ -23,34 +26,9 @@ function CouponTable() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td className={styles.centerText}>원신</td>
-          <td>
-            <div>GENSHIN2025</div>
-            <div className={styles.codeDescription}>원신 2025년 기념 코드</div>
-          </td>
-          <td>GLOBAL</td>
-          <td>원석 x100</td>
-          <td>
-            <div className={styles.centerText}>등록: 2025-01-05</div>
-            <div className={styles.centerText}>마감: 2025-01-10</div>
-          </td>
-          <td className={styles.centerText}>D-3</td>
-        </tr>
-        <tr>
-          <td className={styles.centerText}>명조</td>
-          <td>
-            <div>GodGame</div>
-            <div className={styles.codeDescription}>명조 정말 갓겜입니다.</div>
-          </td>
-          <td>ALL</td>
-          <td>원석 x100</td>
-          <td>
-            <div className={styles.centerText}>등록: 2025-01-05</div>
-            <div className={styles.centerText}>마감: 2025-01-10</div>
-          </td>
-          <td className={styles.centerText}>D-3</td>
-        </tr>
+        {COUPON_LIST.map((coupon) => (
+                <CouponItem key={coupon.id} coupon={coupon} />
+              ))}
       </tbody>
     </table>
   )
