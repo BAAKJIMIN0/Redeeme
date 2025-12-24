@@ -6,12 +6,12 @@ interface Props {
 }
 
 export const CouponItem = ({ coupon }: Props) => {
-  const iconUrl = '/gameIcons/gameIcon_' + coupon.game + '.png';
+  const iconUrl = '/gameIcons/gameIcon_' + coupon.slug + '.png';
 
   return (
     <tr>
           <td className={styles.centerText}>
-            <img className={styles.gameImg} src={iconUrl} alt={coupon.game} />
+            <img className={styles.gameImg} src={iconUrl} alt={coupon.kor_name} />
           </td>
           <td>
             <div>{coupon.code}</div>
@@ -23,7 +23,7 @@ export const CouponItem = ({ coupon }: Props) => {
             <div>등록: {coupon.startedAt}</div>
             <div>마감: {coupon.expiredAt}</div>
           </td>
-          <td className={styles.centerText}>{coupon.ddayDate}</td>
+          <td className={styles.centerText}></td>
         </tr>
   );
 };

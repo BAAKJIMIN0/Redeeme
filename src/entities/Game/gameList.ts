@@ -4,12 +4,12 @@ export const GAME_LIST: Game[] = [
   {
     id: 1,
     name: '블루 아카이브',
-    iconUrl: 'BlueArchive'
+    iconUrl: 'BA'
   },
   {
     id: 2,
     name: '명조',
-    iconUrl: 'Wuthering'
+    iconUrl: 'WW'
   },
   {
     id: 3,

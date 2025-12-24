@@ -3,35 +3,15 @@ import type { Coupon } from './types';
 export const COUPON_LIST: Coupon[] = [
   {
     id: 1,
-    game: 'ZZZ',
-    code: 'ZZZCREATOR25',
-    description: '크리에이터 코드',
-    server: 'ALL',
-    reward: '20 폴리크롬',
+    game_id: 1,
+    kor_name: '블루 아카이브',
+    eng_name: 'Blue Archive',
+    code: 'ARIATOTHESTARMIK',
+    description: '미카 미니 뮤지컬 공개 기념',
+    server: 'KR',
+    reward: '청휘석 x600',
     startedAt: '2025-12-24',
-    expiredAt: '',
-    ddayDate: ''
-  },
-  {
-    id: 2,
-    game: 'ZZZ',
-    code: 'ZZZ25MINA',
-    description: '미나 기념 코드',
-    server: 'ALL',
-    reward: '60 폴리크롬',
-    startedAt: '2025-12-24',
-    expiredAt: '',
-    ddayDate: ''
-  },
-  {
-    id: 3,
-    game: 'ZZZ',
-    code: 'ZHAOISFREE',
-    description: '',
-    server: 'ALL',
-    reward: '50 폴리크롬',
-    startedAt: '2025-12-24',
-    expiredAt: '',
-    ddayDate: ''
+    expiredAt: '2025-12-27',
+    slug : 'BA'
   },
 ];
