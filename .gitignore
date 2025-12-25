@@ -36,3 +36,15 @@ docker-data/
 *.otf
 *.woff
 *.woff2
+
+# Backend
+backend/target/
+backend/*.jar
+backend/*.war
+backend/*.ear
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/.recommenders/
+backend/logs/
+*.log
+backend/src/main/resources/application-*.properties
+backend/src/main/resources/application.properties
