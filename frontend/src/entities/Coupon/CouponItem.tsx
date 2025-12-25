@@ -8,6 +8,11 @@ interface Props {
 export const CouponItem = ({ coupon }: Props) => {
   const iconUrl = '/gameIcons/gameIcon_' + coupon.slug + '.png';
 
+  const formatDate = (dateStr?: string) => {
+    if (!dateStr) return '무기한';
+    return dateStr.split(' ')[0];
+  };
+
   return (
     <tr>
           <td className={styles.centerText}>
@@ -20,8 +25,8 @@ export const CouponItem = ({ coupon }: Props) => {
           </td>
           <td>{coupon.reward}</td>
           <td>
-            <div>등록: {coupon.startedAt}</div>
-            <div>마감: {coupon.expiredAt}</div>
+            <div>등록: {formatDate(coupon.startedAt)}</div>
+            <div>마감: {formatDate(coupon.expiredAt)}</div>
           </td>
           <td className={styles.centerText}></td>
           <td className={styles.centerText}></td>

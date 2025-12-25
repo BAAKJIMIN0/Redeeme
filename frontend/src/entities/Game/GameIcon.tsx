@@ -3,14 +3,26 @@ import type { Game } from './types';
 
 interface Props {
   game: Game;
+  isSelected: boolean;
+  onToggle: (id: number) => void;
 }
 
-export const GameButton = ({ game }: Props) => {
-  const iconUrl = '/gameIcons/gameIcon_' + game.iconUrl + '.png';
+export const GameButton = ({ game, isSelected, onToggle }: Props) => {
+  const iconUrl = `/gameIcons/gameIcon_${game.iconUrl}.png`;
 
   return (
-    <button className={styles.gameButton} title={game.name}>
-      <img src={iconUrl} alt={game.name} />
-    </button>
+    <label
+      className={`${styles.gameButton} ${isSelected ? styles.active : ''}`}
+    >
+      <input 
+        type="checkbox" 
+        checked={isSelected} 
+        onChange={() => onToggle(game.id)}
+        className={styles.hiddenCheckbox} 
+      />
+      <div className={styles.iconWrapper}>
+        <img src={iconUrl} alt={game.name} />
+      </div>
+    </label>
   );
 };

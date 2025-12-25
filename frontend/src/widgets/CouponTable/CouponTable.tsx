@@ -1,9 +1,10 @@
 import styles from './CouponTable.module.css'
-import { COUPON_LIST } from '../../entities/Coupon/couponList';
+import { useCoupons } from '../../features/coupon-list/useCoupons';
 import { CouponItem } from '../../entities/Coupon/CouponItem';
 
 
 function CouponTable() {
+  const { coupons } = useCoupons();
   return(
     <table className={styles.table}>
       <colgroup>
@@ -28,9 +29,9 @@ function CouponTable() {
         </tr>
       </thead>
       <tbody>
-        {COUPON_LIST.map((coupon) => (
-                <CouponItem key={coupon.id} coupon={coupon} />
-              ))}
+        {coupons.map((coupon) => (
+            <CouponItem key={coupon.id} coupon={coupon} />
+          ))}
       </tbody>
     </table>
   )

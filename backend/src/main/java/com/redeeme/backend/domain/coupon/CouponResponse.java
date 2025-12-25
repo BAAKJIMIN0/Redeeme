@@ -17,7 +17,6 @@ public class CouponResponse {
     private String expired_at;
     private String quickUrl;
 
-    // Entity를 DTO로 변환해주는 생성자
     public CouponResponse(Coupon coupon) {
         this.id = coupon.getId();
         this.game_id = coupon.getGame().getId();

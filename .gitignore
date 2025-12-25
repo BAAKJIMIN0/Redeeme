@@ -48,3 +48,4 @@ backend/logs/
 *.log
 backend/src/main/resources/application-*.properties
 backend/src/main/resources/application.properties
+backend/src/main/java/com/redeeme/backend/config/
