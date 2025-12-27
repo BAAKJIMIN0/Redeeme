@@ -13,3 +13,7 @@
 .centerText {
   text-align: center;
 }
+
+.rewardItem {
+  word-break: keep-all;
+}

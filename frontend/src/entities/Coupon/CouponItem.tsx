@@ -23,7 +23,13 @@ export const CouponItem = ({ coupon }: Props) => {
             <div>{coupon.code}</div>
             <div className={styles.codeDescription}>{coupon.description}</div>
           </td>
-          <td>{coupon.reward}</td>
+          <td className={styles.rewardCell}>
+            {coupon.reward.split('\n').map((item, index) => (
+              <div key={index} className={styles.rewardItem}>
+                {item.trim()}
+              </div>
+            ))}
+          </td>
           <td>
             <div>등록: {formatDate(coupon.startedAt)}</div>
             <div>마감: {formatDate(coupon.expiredAt)}</div>
