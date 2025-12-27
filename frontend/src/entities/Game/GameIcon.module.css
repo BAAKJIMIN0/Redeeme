@@ -1,9 +1,9 @@
 .gameButton {
   width: 60px;
   height: 60px;
-  overflow: hidden;
-  border-radius: 10px;
   border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  overflow: hidden;
   cursor: pointer;
   transition: transform 0.1s ease;
 }
@@ -13,8 +13,8 @@
 }
 
 .gameButton.active {
-  border-color: #2ecc71;
   border-width: 3px;
+  border-color: #2ecc71;
 }
 
 .hiddenCheckbox {
@@ -22,8 +22,8 @@
 }
 
 .gameButton img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
