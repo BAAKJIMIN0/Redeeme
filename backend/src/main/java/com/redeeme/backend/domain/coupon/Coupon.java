@@ -2,7 +2,6 @@ package com.redeeme.backend.domain.coupon;
 
 import com.redeeme.backend.domain.game.Game; // Game 엔티티 임포트
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -28,11 +27,11 @@ public class Coupon {
     @JoinColumn(name = "game_id")
     private Game game;
     private String code;
-    @Column(columnDefinition = "TEXT")
     private String description;
     private String server;
     private String reward;
-    private String started_at;
-    private String expired_at;
+    private String startedAt;
+    private String expiredAt;
     private String quickUrl;
+    private Boolean active;
 }

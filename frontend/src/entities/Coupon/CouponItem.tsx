@@ -16,7 +16,7 @@ export const CouponItem = ({ coupon }: Props) => {
   return (
     <tr>
           <td className={styles.centerText}>
-            <img className={styles.gameImg} src={iconUrl} alt={coupon.kor_name} />
+            <img className={styles.gameImg} src={iconUrl} alt={coupon.korName} />
           </td>
           <td>{coupon.server}</td>
           <td>

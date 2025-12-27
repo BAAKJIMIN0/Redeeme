@@ -20,12 +20,18 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "kor_name")
-    private String kor_name;
+    @Column(name = "korName")
+    private String korName;
 
-    @Column(name = "eng_name")
-    private String eng_name;
+    @Column(name = "engName")
+    private String engName;
 
     @Column(unique = true)
     private String slug;
+
+    @Column(name = "active")
+    private Boolean active;
+
+    @Column(name = "priority")
+    private int priority;
 }

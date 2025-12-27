@@ -1,18 +1,17 @@
 import axios from 'axios';
 import type { Coupon } from '../../entities/Coupon/types';
 
-// 백엔드에서 오는 원본 데이터 타입 정의 (스네이크 케이스)
 interface RawCoupon {
   id: number;
-  game_id: number;
-  kor_name: string;
-  eng_name: string;
+  gameId: number;
+  korName: string;
+  engName: string;
   code: string;
   description: string;
   server: string;
   reward: string;
-  started_at: string;  // 👈 스네이크 케이스
-  expired_at: string;  // 👈 스네이크 케이스
+  startedAt: string;
+  expiredAt: string;
   slug: string;
   quickUrl: string | null;
 }
@@ -22,15 +21,15 @@ export const getCoupons = async (): Promise<Coupon[]> => {
   
   return response.data.map((raw) => ({
     id: raw.id,
-    game_id: raw.game_id,
-    kor_name: raw.kor_name,
-    eng_name: raw.eng_name,
+    gameId: raw.gameId,
+    korName: raw.korName,
+    engName: raw.engName,
     code: raw.code,
     description: raw.description,
     server: raw.server,
     reward: raw.reward,
-    startedAt: raw.started_at,
-    expiredAt: raw.expired_at,
+    startedAt: raw.startedAt,
+    expiredAt: raw.expiredAt,
     slug: raw.slug,
     quickUrl: raw.quickUrl ?? undefined,
   }));

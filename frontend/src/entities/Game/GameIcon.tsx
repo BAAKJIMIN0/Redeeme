@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const GameButton = ({ game, isSelected, onToggle }: Props) => {
-  const iconUrl = `/gameIcons/gameIcon_${game.iconUrl}.png`;
+  const iconUrl = `/gameIcons/gameIcon_${game.slug}.png`;
 
   return (
     <label
@@ -21,7 +21,7 @@ export const GameButton = ({ game, isSelected, onToggle }: Props) => {
         className={styles.hiddenCheckbox} 
       />
       <div className={styles.iconWrapper}>
-        <img src={iconUrl} alt={game.name} />
+        <img src={iconUrl} alt={game.korName} />
       </div>
     </label>
   );

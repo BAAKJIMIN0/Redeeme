@@ -1,5 +1,9 @@
+// src/entities/Game/types.ts
 export interface Game {
   id: number;
-  name: string;
-  iconUrl: string;
+  korName: string;
+  engName: string;
+  slug: string;
+  active: boolean;
+  priority: number;
 }
