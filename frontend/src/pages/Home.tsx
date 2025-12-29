@@ -6,16 +6,11 @@ import CouponTable from '../widgets/CouponTable/CouponTable'
 
 function HomePage() {
   return (
-    <div style={{ minHeight: '100vh' }}>
-      <Header />
-      <main className={styles.main}>
-        <button style={{ marginBottom: '16px', width: 100 }}>제보하기</button>
-        <GameListContainer />
-        <CouponTable />
-      </main>
-
-      <Footer />
-    </div>
+    <>
+      <button style={{ marginBottom: '16px', width: 100 }}>제보하기</button>
+      <GameListContainer />
+      <CouponTable />
+    </>
   )
 }
 
