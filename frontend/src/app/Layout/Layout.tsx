@@ -5,9 +5,8 @@ import styles from './Layout.module.css'
 
 function Layout() {
   return (
-    <div style={{ minHeight: '100vh' }}>
+    <div className={styles.layout}>
       <Header />
-      {}
       <main className={styles.main}>
         <Outlet />
       </main>

@@ -1,5 +1,5 @@
 import styles from './Home.module.css'
-import GameListContainer from '../widgets/GameListContaioner/GameListContainer'
+import GameListContainer from '../widgets/GameListContainer/GameListContainer'
 import CouponTable from '../widgets/CouponTable/CouponTable'
 
 function HomePage() {

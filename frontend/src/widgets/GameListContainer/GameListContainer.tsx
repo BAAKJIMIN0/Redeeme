@@ -1,7 +1,7 @@
 import styles from './GameListContainer.module.css'
-import { GameButton } from '../../entities/Game/GameIcon';
+import { GameButton } from '../../entities/Game/GameIcon.tsx';
 import { useGames } from '../../entities/Game/useGames.ts';
-import { useToggleGame } from '../../features/coupon-filter/useToggleGame';
+import { useToggleGame } from '../../features/coupon-filter/useToggleGame.ts';
 
 function GameListContainer() {
   const { games, loading, error } = useGames();
