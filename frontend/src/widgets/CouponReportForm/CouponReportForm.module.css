@@ -67,6 +67,51 @@
   flex: 1;
 }
 
+.rewardRow {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  margin-bottom: 4px;
+  align-items: center;
+}
+
+.rewardRow .input:first-child {
+  flex: 1; 
+  margin-bottom: 0;
+}
+
+.amountInput {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.addBtn {
+  background-color: #f9f9f9;
+  border: 1px dashed #e1e1e1;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.addBtn:hover {
+  background-color: #e5e5e5;
+}
+
+.removeBtn {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -1,4 +1,3 @@
-// src/entities/Game/types.ts
 export interface Game {
   id: number;
   korName: string;
@@ -6,4 +5,5 @@ export interface Game {
   slug: string;
   active: boolean;
   priority: number;
+  servers: string[];
 }

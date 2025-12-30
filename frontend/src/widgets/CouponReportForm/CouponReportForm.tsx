@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGames } from '../../entities/Game/useGames';
 import styles from './CouponReportForm.module.css';
+import type { RewardItem } from '../../entities/Coupon/types';
 
 function CouponReportForm() {
   const navigate = useNavigate();
@@ -10,16 +11,55 @@ function CouponReportForm() {
   const [selectedGameId, setSelectedGameId] = useState('');
   const [isCustom, setIsCustom] = useState(false);
   const [customGameName, setCustomGameName] = useState('');
+  
+  const [availableServers, setAvailableServers] = useState<string[]>([]);
+  const [selectedServer, setSelectedServer] = useState('');
+
   const [code, setCode] = useState('');
   const [description, setDescription] = useState('');
-  const [reward, setReward] = useState('');
+  const [rewards, setRewards] = useState<RewardItem[]>([{ item: '', amount: '' }]);
   const [startedAt, setStartedAt] = useState(new Date().toISOString().split('T')[0]);
   const [expiredAt, setExpiredAt] = useState('');
+  const [quickUrl, setQuickUrl] = useState('');
 
   const handleGameChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setSelectedGameId(value);
-    setIsCustom(value === 'custom');
+    
+    if (value === 'custom') {
+      setIsCustom(true);
+      setAvailableServers([]);
+      setSelectedServer(''); 
+    } else {
+      setIsCustom(false);
+      const selectedGame = games.find(g => g.id.toString() === value);
+      const serverList = selectedGame?.servers || [];
+      setAvailableServers(serverList);
+
+      if (serverList.length === 1) {
+        setSelectedServer(serverList[0]);
+      } else if (serverList.length === 0) {
+        setSelectedServer('ALL');
+      } else {
+        setSelectedServer('');
+      }
+    }
+  };
+
+  const addRewardField = () => {
+    setRewards([...rewards, { item: '', amount: '' }]);
+  };
+
+  const removeRewardField = (index: number) => {
+    if (rewards.length > 1) {
+      setRewards(rewards.filter((_, i) => i !== index));
+    }
+  };
+  
+  const handleRewardChange = (index: number, field: keyof RewardItem, value: string) => {
+    const newRewards = [...rewards];
+    newRewards[index][field] = value;
+    setRewards(newRewards);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,14 +73,18 @@ function CouponReportForm() {
       return;
     }
 
+    const filteredRewards = rewards.filter(r => r.item.trim() !== '');
+
     const payload = {
       gameId: isCustom ? 0 : Number(selectedGameId),
-      korName: isCustom ? customGameName : selectedGame?.korName || '',
+      korName: finalGameName,
+      server: selectedServer,
       code,
       description,
-      reward,
+      rewards: filteredRewards,
       startedAt: new Date(startedAt).toISOString(),
       expiredAt: expiredAt ? new Date(expiredAt).toISOString() : undefined,
+      quickUrl
     };
     
     console.log('서버 전송 데이터:', payload);
@@ -74,7 +118,38 @@ function CouponReportForm() {
             value={customGameName} 
             onChange={(e) => setCustomGameName(e.target.value)} 
             required 
-            placeholder="게임 이름을 입력하세요"
+            placeholder="게임 이름을 직접 입력하세요"
+          />
+        </div>
+      )}
+
+      {!isCustom && availableServers.length > 1 && (
+        <div className={styles.field}>
+          <label className={styles.label}>서버 선택</label>
+          <select 
+            className={styles.select}
+            value={selectedServer}
+            onChange={(e) => setSelectedServer(e.target.value)}
+            required
+          >
+            <option value="" disabled>서버를 선택해 주세요</option>
+            {availableServers.map(s => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {isCustom && (
+        <div className={styles.field}>
+          <label className={styles.label}>서버 정보</label>
+          <input 
+            className={styles.input}
+            type="text"
+            value={selectedServer}
+            onChange={(e) => setSelectedServer(e.target.value)}
+            placeholder="예: ALL, KR, JP, GLOBAL 등"
+            required
           />
         </div>
       )}
@@ -98,18 +173,53 @@ function CouponReportForm() {
           type="text" 
           value={description} 
           onChange={(e) => setDescription(e.target.value)} 
-          placeholder="쿠폰에 대한 추가 정보"
+          placeholder="예: 2025 신년 기념"
         />
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label}>보상</label>
+        <label className={styles.label}>보상 목록</label>
+        {rewards.map((reward, index) => (
+          <div key={index} className={styles.rewardRow}>
+            <input 
+              className={styles.input}
+              type="text" 
+              value={reward.item} 
+              onChange={(e) => handleRewardChange(index, 'item', e.target.value)} 
+              placeholder="아이템"
+              required={index === 0}
+            />
+            <input 
+              className={`${styles.input} ${styles.amountInput}`}
+              type="text" 
+              value={reward.amount} 
+              onChange={(e) => handleRewardChange(index, 'amount', e.target.value)} 
+              placeholder="수량"
+            />
+            {rewards.length > 1 && (
+              <button 
+                type="button" 
+                className={styles.removeBtn} 
+                onClick={() => removeRewardField(index)}
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        ))}
+        <button type="button" className={styles.addBtn} onClick={addRewardField}>
+          + 보상 추가
+        </button>
+      </div>
+
+      <div className={styles.field}>
+        <label className={styles.label}>링크(선택)</label>
         <input 
           className={styles.input}
           type="text" 
-          value={reward} 
-          onChange={(e) => setReward(e.target.value)} 
-          placeholder="예: 청휘석 600개"
+          value={quickUrl} 
+          onChange={(e) => setQuickUrl(e.target.value)} 
+          placeholder="쿠폰 바로가기 혹은 원본 링크"
         />
       </div>
 

@@ -1,12 +1,17 @@
+export interface RewardItem {
+  item: string;
+  amount: string;
+}
+
 export interface Coupon {
   id: number;
-  game_id: number;
-  kor_name: string;
-  eng_name: string;
+  gameId: number;
+  korName: string;
+  engName: string;
   code: string;
   description?: string;
   server: string;
-  reward: string;
+  rewards: RewardItem[];
   startedAt: string;
   expiredAt?: string;
   slug: string;

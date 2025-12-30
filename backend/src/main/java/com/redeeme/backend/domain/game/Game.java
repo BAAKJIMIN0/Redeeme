@@ -1,5 +1,10 @@
 package com.redeeme.backend.domain.game;
 
+import java.util.List;
+
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,10 +25,10 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "korName")
+    @Column(name = "kor_name")
     private String korName;
 
-    @Column(name = "engName")
+    @Column(name = "eng_name")
     private String engName;
 
     @Column(unique = true)
@@ -34,4 +39,8 @@ public class Game {
 
     @Column(name = "priority")
     private int priority;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "servers", columnDefinition = "json")
+    private List<String> servers;
 }
