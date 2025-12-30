@@ -17,7 +17,7 @@ function CouponReportForm() {
 
   const [code, setCode] = useState('');
   const [description, setDescription] = useState('');
-  const [rewards, setRewards] = useState<RewardItem[]>([{ item: '', amount: '' }]);
+  const [rewards, setRewards] = useState<RewardItem[]>([{ item: '', amount: 0 }]);
   const [startedAt, setStartedAt] = useState(new Date().toISOString().split('T')[0]);
   const [expiredAt, setExpiredAt] = useState('');
   const [quickUrl, setQuickUrl] = useState('');
@@ -47,7 +47,7 @@ function CouponReportForm() {
   };
 
   const addRewardField = () => {
-    setRewards([...rewards, { item: '', amount: '' }]);
+    setRewards([...rewards, { item: '', amount: 0 }]);
   };
 
   const removeRewardField = (index: number) => {
@@ -58,7 +58,11 @@ function CouponReportForm() {
   
   const handleRewardChange = (index: number, field: keyof RewardItem, value: string) => {
     const newRewards = [...rewards];
-    newRewards[index][field] = value;
+    if (field === 'amount') {
+      newRewards[index][field] = Number(value) as any; 
+    } else {
+      newRewards[index][field] = value as any;
+    }
     setRewards(newRewards);
   };
 

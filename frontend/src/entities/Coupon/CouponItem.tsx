@@ -13,7 +13,6 @@ export const CouponItem = ({ coupon }: Props) => {
     return dateStr.split(' ')[0];
   };
 
-  console.log("전체 쿠폰 데이터:", coupon);
   return (
     <tr>
           <td className={styles.centerText}>
