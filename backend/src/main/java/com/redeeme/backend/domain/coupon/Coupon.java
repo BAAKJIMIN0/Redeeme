@@ -1,7 +1,12 @@
 package com.redeeme.backend.domain.coupon;
 
-import com.redeeme.backend.domain.game.Game; // Game 엔티티 임포트
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
+import com.fasterxml.jackson.databind.JsonNode; // Game 엔티티 임포트
+import com.redeeme.backend.domain.game.Game;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -29,7 +34,9 @@ public class Coupon {
     private String code;
     private String description;
     private String server;
-    private String reward;
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "rewards", columnDefinition = "json")
+    private JsonNode rewards;
     private String startedAt;
     private String expiredAt;
     private String quickUrl;

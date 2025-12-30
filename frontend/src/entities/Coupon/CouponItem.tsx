@@ -13,6 +13,7 @@ export const CouponItem = ({ coupon }: Props) => {
     return dateStr.split(' ')[0];
   };
 
+  console.log("전체 쿠폰 데이터:", coupon);
   return (
     <tr>
           <td className={styles.centerText}>
@@ -24,9 +25,9 @@ export const CouponItem = ({ coupon }: Props) => {
             <div className={styles.codeDescription}>{coupon.description}</div>
           </td>
           <td className={styles.rewardCell}>
-            {coupon.reward.split('\n').map((item, index) => (
+            {(coupon.rewards || []).map((reward, index) => (
               <div key={index} className={styles.rewardItem}>
-                {item.trim()}
+                {reward.item} * {reward.amount}
               </div>
             ))}
           </td>

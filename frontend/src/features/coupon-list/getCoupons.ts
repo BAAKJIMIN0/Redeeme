@@ -1,5 +1,6 @@
 import axios from 'axios';
 import type { Coupon } from '../../entities/Coupon/types';
+import type { RewardItem } from '../../entities/Coupon/types';
 
 interface RawCoupon {
   id: number;
@@ -9,7 +10,7 @@ interface RawCoupon {
   code: string;
   description: string;
   server: string;
-  reward: string;
+  rewards: RewardItem[];
   startedAt: string;
   expiredAt: string;
   slug: string;
@@ -27,7 +28,7 @@ export const getCoupons = async (): Promise<Coupon[]> => {
     code: raw.code,
     description: raw.description,
     server: raw.server,
-    reward: raw.reward,
+    rewards: raw.rewards,
     startedAt: raw.startedAt,
     expiredAt: raw.expiredAt,
     slug: raw.slug,

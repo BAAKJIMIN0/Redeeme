@@ -1,6 +1,6 @@
 export interface RewardItem {
   item: string;
-  amount: string;
+  amount: number;
 }
 
 export interface Coupon {

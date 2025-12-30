@@ -4,7 +4,7 @@ import GameListContainer from '../widgets/GameListContainer/GameListContainer'
 import CouponTable from '../widgets/CouponTable/CouponTable'
 
 function HomePage() {
-  const navigate = useNavigate(); // 2. navigate 함수 생성
+  const navigate = useNavigate();
 
   const handleReportClick = () => {
     navigate('/coupon-report');
