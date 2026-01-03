@@ -1,6 +1,9 @@
 package com.redeeme.backend.domain.coupon;
 
 import lombok.Getter;
+
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 @Getter
@@ -14,8 +17,8 @@ public class CouponResponse {
     private String description;
     private String server;
     private JsonNode rewards;
-    private String startedAt;
-    private String expiredAt;
+    private LocalDate startedAt;
+    private LocalDate expiredAt;
     private String quickUrl;
 
     public CouponResponse(Coupon coupon) {

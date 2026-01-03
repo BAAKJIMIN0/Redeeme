@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGames } from '../../entities/Game/useGames';
@@ -91,9 +92,18 @@ function CouponReportForm() {
       quickUrl
     };
     
-    console.log('서버 전송 데이터:', payload);
-    alert('제보가 완료되었습니다!');
-    navigate('/');
+  try {
+      await axios.post(
+        'http://localhost:8080/api/admin/coupon-create',
+        payload
+      );
+
+      alert('쿠폰이 등록되었습니다!');
+      navigate('/');
+    } catch (error) {
+      console.error('쿠폰 등록 실패:', error);
+      alert('쿠폰 등록에 실패했습니다.');
+    }
   };
 
   return (
