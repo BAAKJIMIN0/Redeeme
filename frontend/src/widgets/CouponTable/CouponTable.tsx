@@ -1,7 +1,5 @@
 import styles from './CouponTable.module.css'
-import { useCoupons } from '../../features/coupon-list/useCoupons';
-import { CouponItem } from '../../entities/Coupon/CouponItem';
-
+import { CouponItem, useCoupons } from '@/entities/coupon/index.ts';
 
 function CouponTable() {
   const { coupons } = useCoupons();

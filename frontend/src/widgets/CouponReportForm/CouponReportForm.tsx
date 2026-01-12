@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGames } from '../../entities/Game/useGames';
+import { useGames } from '@/entities/game/index.ts'
 import styles from './CouponReportForm.module.css';
-import type { RewardItem } from '../../entities/Coupon/types';
+import type { RewardItem } from '@/entities/coupon/index.ts';
 
 function CouponReportForm() {
   const navigate = useNavigate();

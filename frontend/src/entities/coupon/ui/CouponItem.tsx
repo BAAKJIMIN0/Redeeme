@@ -1,5 +1,5 @@
 import styles from './CouponItem.module.css'
-import type { Coupon } from './types';
+import type { Coupon } from '../model/types';
 
 interface Props {
   coupon: Coupon;

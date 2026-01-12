@@ -1,5 +1,5 @@
 import styles from './GameIcon.module.css'
-import type { Game } from './types';
+import type { Game } from '../model/types';
 
 interface Props {
   game: Game;
@@ -7,7 +7,7 @@ interface Props {
   onToggle: (id: number) => void;
 }
 
-export const GameButton = ({ game, isSelected, onToggle }: Props) => {
+export const GameIcon = ({ game, isSelected, onToggle }: Props) => {
   const iconUrl = `/gameIcons/gameIcon_${game.slug}.png`;
 
   return (

@@ -1,7 +1,6 @@
 import styles from './GameListContainer.module.css'
-import { GameButton } from '../../entities/Game/GameIcon.tsx';
-import { useGames } from '../../entities/Game/useGames.ts';
-import { useToggleGame } from '../../features/coupon-filter/useToggleGame.ts';
+import { GameIcon, useGames } from '@/entities/game/index.ts'
+import { useToggleGame } from '@/features/coupon-filter/useToggleGame.ts';
 
 function GameListContainer() {
   const { games, loading, error } = useGames();
@@ -13,7 +12,7 @@ function GameListContainer() {
   return (
     <div className={styles.GameListContainer}>
       {games.map(game => (
-        <GameButton
+        <GameIcon
           key={game.id}
           game={game}
           isSelected={isSelected(game.id)}

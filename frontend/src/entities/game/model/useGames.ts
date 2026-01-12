@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getGames } from './getGames';
+import { getGames } from '../api/getGames';
 import type { Game } from './types';
 
 export const useGames = () => {

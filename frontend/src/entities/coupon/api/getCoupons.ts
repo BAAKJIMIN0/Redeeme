@@ -1,6 +1,6 @@
 import axios from 'axios';
-import type { Coupon } from '../../entities/Coupon/types';
-import type { RewardItem } from '../../entities/Coupon/types';
+import type { Coupon } from '../model/types';
+import type { RewardItem } from '../model/types';
 
 interface RawCoupon {
   id: number;

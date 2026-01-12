@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import type { Coupon } from '../../entities/Coupon/types';
-import { getCoupons } from './getCoupons';
+import type { Coupon } from './types';
+import { getCoupons } from '../api/getCoupons';
 
 export const useCoupons = () => {
   const [coupons, setCoupons] = useState<Coupon[]>([]);
