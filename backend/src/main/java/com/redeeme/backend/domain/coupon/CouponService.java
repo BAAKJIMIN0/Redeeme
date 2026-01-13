@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.redeeme.backend.domain.coupon.dto.CouponResponse;
+
 import lombok.RequiredArgsConstructor;
 
 @Service

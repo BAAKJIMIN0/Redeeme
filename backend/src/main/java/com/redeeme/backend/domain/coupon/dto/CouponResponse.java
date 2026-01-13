@@ -1,4 +1,5 @@
-package com.redeeme.backend.domain.coupon;
+package com.redeeme.backend.domain.coupon.dto;
+import com.redeeme.backend.domain.coupon.Coupon;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.redeeme.backend.domain.admin.couponCreate;
+package com.redeeme.backend.domain.coupon.dto;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class AdminCouponCreateDto {
+public class AdminCouponCreateRequest {
     private String code;
     private String description;
     private Long gameId;

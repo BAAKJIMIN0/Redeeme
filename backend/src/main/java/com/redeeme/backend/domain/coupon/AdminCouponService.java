@@ -1,7 +1,6 @@
-package com.redeeme.backend.domain.admin.couponCreate;
+package com.redeeme.backend.domain.coupon;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.redeeme.backend.domain.coupon.Coupon;
-import com.redeeme.backend.domain.coupon.CouponRepository;
+import com.redeeme.backend.domain.coupon.dto.AdminCouponCreateRequest;
 import com.redeeme.backend.domain.game.Game;
 import com.redeeme.backend.domain.game.GameRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,15 +13,12 @@ public class AdminCouponService {
 
     private final CouponRepository couponRepository;
     private final GameRepository gameRepository;
-    private final ObjectMapper objectMapper; // rewards 변환용
+    private final ObjectMapper objectMapper;
 
     @Transactional
-    public void saveCoupon(AdminCouponCreateDto dto) {
-        // 1. gameId로 Game 엔티티 조회
+    public void saveCoupon(AdminCouponCreateRequest dto) {
         Game game = gameRepository.findById(dto.getGameId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게임 ID입니다: " + dto.getGameId()));
-
-        // 2. 기존 Coupon 엔티티에 값 채우기
         Coupon coupon = new Coupon();
         coupon.setGame(game);
         coupon.setCode(dto.getCode());
@@ -33,8 +29,6 @@ public class AdminCouponService {
         coupon.setExpiredAt(dto.getExpiredAt());
         coupon.setQuickUrl(dto.getQuickUrl());
         coupon.setActive(true);
-
-        // 3. DB 저장
         couponRepository.save(coupon);
     }
 }
