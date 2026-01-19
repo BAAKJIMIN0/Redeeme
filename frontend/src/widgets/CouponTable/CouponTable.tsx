@@ -1,8 +1,12 @@
 import styles from './CouponTable.module.css'
 import { CouponItem, useCoupons } from '@/entities/coupon/index.ts';
 
-function CouponTable() {
-  const { coupons } = useCoupons();
+interface CouponTableProps {
+  selectedGameIds: number[];
+}
+
+function CouponTable({ selectedGameIds }: CouponTableProps) {
+  const { coupons } = useCoupons(selectedGameIds);
   return(
     <table className={styles.table}>
       <colgroup>

@@ -1,10 +1,13 @@
 import styles from './GameListContainer.module.css'
 import { GameIcon, useGames } from '@/entities/game/index.ts'
-import { useToggleGame } from '@/features/coupon-filter/useToggleGame.ts';
 
-function GameListContainer() {
+interface GameListContainerProps {
+  selectedGameIds: number[];
+  onToggle: (id: number) => void;
+}
+
+function GameListContainer({ selectedGameIds, onToggle }: GameListContainerProps) {
   const { games, loading, error } = useGames();
-  const { isSelected, toggle } = useToggleGame();
 
   if (loading) return <div>로딩중...</div>;
   if (error) return <div>게임 목록을 불러오지 못했습니다.</div>;
@@ -15,11 +18,12 @@ function GameListContainer() {
         <GameIcon
           key={game.id}
           game={game}
-          isSelected={isSelected(game.id)}
-          onToggle={toggle}
+          isSelected={selectedGameIds.includes(game.id)}
+          onToggle={() => onToggle(game.id)}
         />
       ))}
     </div>
   );
 }
-export default GameListContainer
+
+export default GameListContainer;

@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CouponRepository extends JpaRepository<Coupon, Long> {
-    List<Coupon> findByActiveTrue();
+    List<Coupon> findAllByOrderByExpiredAtAsc();
+    List<Coupon> findByGameIdInOrderByExpiredAtAsc(List<Long> gameIds);
 }

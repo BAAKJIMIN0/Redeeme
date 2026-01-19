@@ -17,9 +17,13 @@ interface RawCoupon {
   quickUrl: string | null;
 }
 
-export const getCoupons = async (): Promise<Coupon[]> => {
-  const response = await axios.get<RawCoupon[]>('http://localhost:8080/api/coupons');
-  
+export const getCoupons = async (selectedGameIds?: number[]): Promise<Coupon[]> => {
+  const response = await axios.get<RawCoupon[]>('http://localhost:8080/api/coupons', {
+    params: {
+      gameIds: selectedGameIds?.join(',') 
+    }
+  });
+
   return response.data.map((raw) => ({
     id: raw.id,
     gameId: raw.gameId,

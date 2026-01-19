@@ -88,7 +88,7 @@ function CouponReportForm() {
       description,
       rewards: filteredRewards,
       startedAt: new Date(startedAt).toISOString(),
-      expiredAt: expiredAt ? new Date(expiredAt).toISOString() : undefined,
+      expiredAt: expiredAt ? new Date(expiredAt).toISOString() : new Date("9999-12-31").toISOString(),
       quickUrl
     };
     

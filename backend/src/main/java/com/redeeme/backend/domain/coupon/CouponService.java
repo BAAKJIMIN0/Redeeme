@@ -16,8 +16,15 @@ public class CouponService {
     private final CouponRepository couponRepository;
 
     @Transactional(readOnly = true)
-    public List<CouponResponse> getAllCoupons() {
-        return couponRepository.findAll().stream()
+    public List<CouponResponse> getCoupons(List<Long> gameIds) {
+        List<Coupon> coupons;
+        if (gameIds == null || gameIds.isEmpty()) {
+            coupons = couponRepository.findAllByOrderByExpiredAtAsc();
+        } else {
+            coupons = couponRepository.findByGameIdInOrderByExpiredAtAsc(gameIds);
+        }
+
+        return coupons.stream()
                 .map(CouponResponse::new)
                 .collect(Collectors.toList());
     }

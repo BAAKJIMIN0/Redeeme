@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-export function useToggleGame() {
-  const [selectedGameIds, setSelectedGameIds] = useState<number[]>([]);
+export function useToggleGame(initialIds: number[] = []) {
+  const [selectedGameIds, setSelectedGameIds] = useState<number[]>(initialIds);
 
   const isSelected = (id: number) => selectedGameIds.includes(id);
 
