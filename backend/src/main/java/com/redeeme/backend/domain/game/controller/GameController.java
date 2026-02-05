@@ -9,11 +9,9 @@ import com.redeeme.backend.domain.game.Game;
 import com.redeeme.backend.domain.game.GameRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/api/games")
-@CrossOrigin(origins = "http://localhost:5173")
 public class GameController {
 
     @Autowired

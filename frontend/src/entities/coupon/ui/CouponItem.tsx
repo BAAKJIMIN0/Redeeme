@@ -13,6 +13,16 @@ export const CouponItem = ({ coupon }: Props) => {
     return dateStr.split(' ')[0];
   };
 
+  const getExpirationClass = (expiredAt?: string) => {
+    if (!expiredAt) return '';
+    const now = new Date();
+    const expDate = new Date(expiredAt);
+    if (expDate < now) return styles.expired;
+    const threeDays = 3 * 24 * 60 * 60 * 1000;
+    if (expDate.getTime() - now.getTime() <= threeDays) return styles.expiringSoon;
+    return '';
+  };
+
   return (
     <tr>
           <td className={styles.centerText}>
@@ -30,12 +40,10 @@ export const CouponItem = ({ coupon }: Props) => {
               </div>
             ))}
           </td>
-          <td>
+          <td className={getExpirationClass(coupon.expiredAt)}>
             <div>등록: {formatDate(coupon.startedAt)}</div>
             <div>마감: {formatDate(coupon.expiredAt)}</div>
           </td>
-          <td className={styles.centerText}></td>
-          <td className={styles.centerText}></td>
         </tr>
   );
 };

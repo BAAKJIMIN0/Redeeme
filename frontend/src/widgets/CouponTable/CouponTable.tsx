@@ -15,8 +15,6 @@ function CouponTable({ selectedGameIds }: CouponTableProps) {
         <col className={styles.colCode} />
         <col className={styles.colRewards} />
         <col className={styles.colDuration} />
-        <col className={styles.colDday} />
-        <col className={styles.colLink} />
       </colgroup>
 
       <thead>
@@ -26,8 +24,6 @@ function CouponTable({ selectedGameIds }: CouponTableProps) {
           <th>코드</th>
           <th>보상</th>
           <th>기한</th>
-          <th></th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
