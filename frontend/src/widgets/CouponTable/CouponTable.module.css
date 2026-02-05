@@ -46,3 +46,24 @@ td:first-child {
 .colDuration { width: 124px; }
 .colDday { width: 40px; }
 .colLink { width: 40px; }
+
+.sortableHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sortLabel {
+  font-size: 12px;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.sortRight {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  color: var(--color-text-secondary, #888);
+}
