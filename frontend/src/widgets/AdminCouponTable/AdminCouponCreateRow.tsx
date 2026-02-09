@@ -21,6 +21,8 @@ function AdminCouponCreateRow({ games, onCreated, onCancel }: Props) {
   const [rewards, setRewards] = useState<RewardItem[]>([{ item: '', amount: 0 }]);
   const [startedAt, setStartedAt] = useState(new Date().toISOString().split('T')[0]);
   const [expiredAt, setExpiredAt] = useState('');
+  const [quickUrl, setQuickUrl] = useState('');
+  const [showUrlInput, setShowUrlInput] = useState(false);
 
   const selectedGame = games.find((g) => g.id === gameId);
   const servers = selectedGame?.servers ?? [];
@@ -61,6 +63,7 @@ function AdminCouponCreateRow({ games, onCreated, onCancel }: Props) {
         rewards,
         startedAt,
         expiredAt: expiredAt || null,
+        quickUrl: quickUrl || null,
       });
       onCreated();
     } catch (err) {
@@ -97,7 +100,24 @@ function AdminCouponCreateRow({ games, onCreated, onCancel }: Props) {
         )}
       </td>
       <td>
-        <input className={styles.editInput} value={code} onChange={(e) => setCode(e.target.value)} placeholder="코드" />
+        <div className={styles.codeEditRow}>
+          <input className={styles.editInput} value={code} onChange={(e) => setCode(e.target.value)} placeholder="코드" />
+          <button
+            type="button"
+            className={`${styles.linkIconBtn} ${quickUrl ? styles.linkIconActive : ''}`}
+            onClick={() => setShowUrlInput(!showUrlInput)}
+            title="링크 URL"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </button>
+        </div>
+        {showUrlInput && (
+          <input className={styles.urlInput} value={quickUrl} onChange={(e) => setQuickUrl(e.target.value)} placeholder="링크 URL" />
+        )}
         <input className={styles.editInput} value={description} onChange={(e) => setDescription(e.target.value)} placeholder="설명" />
       </td>
       <td>

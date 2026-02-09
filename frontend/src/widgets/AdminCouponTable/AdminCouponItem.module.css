@@ -8,6 +8,7 @@
 .codeDescription {
   font-size: 12px;
   color: var(--color-text-gray);
+  padding-left: 2px;
 }
 
 .centerText {
@@ -93,5 +94,83 @@
 .rewardEditRow {
   display: flex;
   gap: 4px;
+  margin-bottom: 2px;
+}
+
+.codeRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.codeBox {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: #f3f4f6;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: all;
+  font-family: inherit;
+  transition: background-color 0.15s;
+}
+
+.codeBox:hover {
+  background-color: #e5e7eb;
+}
+
+.codeBox:active {
+  background-color: #d1d5db;
+}
+
+.linkIcon {
+  display: inline-flex;
+  align-items: center;
+  color: #6b7280;
+  transition: color 0.15s;
+}
+
+.linkIcon:hover {
+  color: #3b82f6;
+}
+
+
+.codeEditRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.linkIconBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 2px;
+  display: inline-flex;
+  align-items: center;
+  color: #9ca3af;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+
+.linkIconBtn:hover {
+  color: #6b7280;
+}
+
+.linkIconActive {
+  color: #3b82f6;
+}
+
+.linkIconActive:hover {
+  color: #2563eb;
+}
+
+.urlInput {
+  width: 100%;
+  padding: 2px 4px;
+  border: 1px solid var(--color-border-light, #d1d5db);
+  border-radius: 4px;
+  font-size: 12px;
+  box-sizing: border-box;
+  margin-top: 2px;
   margin-bottom: 2px;
 }

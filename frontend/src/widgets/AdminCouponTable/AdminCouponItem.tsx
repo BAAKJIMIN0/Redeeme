@@ -21,6 +21,7 @@ function AdminCouponItem({ coupon, servers, onChanged }: Props) {
   const [startedAt, setStartedAt] = useState(coupon.startedAt);
   const [expiredAt, setExpiredAt] = useState(coupon.expiredAt ?? '');
   const [quickUrl, setQuickUrl] = useState(coupon.quickUrl ?? '');
+  const [showUrlInput, setShowUrlInput] = useState(false);
 
   const iconUrl = '/gameIcons/gameIcon_' + coupon.slug + '.png';
 
@@ -37,6 +38,10 @@ function AdminCouponItem({ coupon, servers, onChanged }: Props) {
     const threeDays = 3 * 24 * 60 * 60 * 1000;
     if (expDate.getTime() - now.getTime() <= threeDays) return styles.expiringSoon;
     return '';
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(coupon.code);
   };
 
   const handleRewardChange = (index: number, field: keyof RewardItem, value: string) => {
@@ -61,7 +66,7 @@ function AdminCouponItem({ coupon, servers, onChanged }: Props) {
         rewards,
         startedAt,
         expiredAt: expiredAt || null,
-        quickUrl,
+        quickUrl: quickUrl || null,
       });
       setEditing(false);
       onChanged();
@@ -79,6 +84,7 @@ function AdminCouponItem({ coupon, servers, onChanged }: Props) {
     setStartedAt(coupon.startedAt);
     setExpiredAt(coupon.expiredAt ?? '');
     setQuickUrl(coupon.quickUrl ?? '');
+    setShowUrlInput(false);
     setEditing(false);
   };
 
@@ -112,7 +118,24 @@ function AdminCouponItem({ coupon, servers, onChanged }: Props) {
           )}
         </td>
         <td>
-          <input className={styles.editInput} value={code} onChange={(e) => setCode(e.target.value)} placeholder="코드" />
+          <div className={styles.codeEditRow}>
+            <input className={styles.editInput} value={code} onChange={(e) => setCode(e.target.value)} placeholder="코드" />
+            <button
+              type="button"
+              className={`${styles.linkIconBtn} ${quickUrl ? styles.linkIconActive : ''}`}
+              onClick={() => setShowUrlInput(!showUrlInput)}
+              title="링크 URL"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </button>
+          </div>
+          {showUrlInput && (
+            <input className={styles.urlInput} value={quickUrl} onChange={(e) => setQuickUrl(e.target.value)} placeholder="링크 URL" />
+          )}
           <input className={styles.editInput} value={description} onChange={(e) => setDescription(e.target.value)} placeholder="설명" />
         </td>
         <td>
@@ -142,7 +165,18 @@ function AdminCouponItem({ coupon, servers, onChanged }: Props) {
       </td>
       <td>{coupon.server}</td>
       <td>
-        <div>{coupon.code}</div>
+        <div className={styles.codeRow}>
+          <span className={styles.codeBox} onClick={handleCopy}>{coupon.code}</span>
+          {coupon.quickUrl && (
+            <a href={coupon.quickUrl} target="_blank" rel="noopener noreferrer" className={styles.linkIcon} title="쿠폰 교환 페이지">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </a>
+          )}
+        </div>
         <div className={styles.codeDescription}>{coupon.description}</div>
       </td>
       <td>

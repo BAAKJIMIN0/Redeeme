@@ -8,6 +8,7 @@
 .codeDescription {
   font-size: 12px;
   color: var(--color-text-gray);
+  padding-left: 2px;
 }
 
 .centerText {
@@ -25,3 +26,40 @@
 .expiringSoon {
   background-color: #fef9c3;
 }
+
+.codeRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.codeBox {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: #f3f4f6;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: all;
+  font-family: inherit;
+  transition: background-color 0.15s;
+}
+
+.codeBox:hover {
+  background-color: #e5e7eb;
+}
+
+.codeBox:active {
+  background-color: #d1d5db;
+}
+
+.linkIcon {
+  display: inline-flex;
+  align-items: center;
+  color: #6b7280;
+  transition: color 0.15s;
+}
+
+.linkIcon:hover {
+  color: #3b82f6;
+}
+
