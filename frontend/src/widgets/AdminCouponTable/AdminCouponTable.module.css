@@ -47,7 +47,7 @@ td:first-child {
 .colDday { width: 40px; }
 .colLink { width: 40px; }
 .colAction {
-  width: 40px;
+  width: 80px;
   text-align: center;
 }
 
@@ -70,4 +70,17 @@ td:first-child {
   align-items: center;
   gap: 0px;
   color: var(--color-text-secondary, #888);
+}
+
+.addRow {
+  text-align: center;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-text-secondary, #888);
+  border-right: none !important;
+}
+
+.addRow:hover {
+  background-color: #f3f4f6;
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { Coupon } from './types';
 import { getCoupons } from '../api/getCoupons';
 
@@ -7,23 +7,27 @@ export const useCoupons = (selectedGameIds: number[] = []) => {
   const [isLoading, setIsLoading] = useState(true);
   const isAllSelected = selectedGameIds.length === 0;
 
-  useEffect(() => {
-    const fetchCoupons = async () => {
-      try {
-        setIsLoading(true);
-        const data = await getCoupons(
-          isAllSelected ? undefined : selectedGameIds
-        );
-        setCoupons(data);
-      } catch (error) {
-        console.error('쿠폰 로드 실패:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchCoupons();
+  const fetchCoupons = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const data = await getCoupons(
+        isAllSelected ? undefined : selectedGameIds
+      );
+      setCoupons(data);
+    } catch (error) {
+      console.error('쿠폰 로드 실패:', error);
+    } finally {
+      setIsLoading(false);
+    }
   }, [selectedGameIds, isAllSelected]);
 
-  return { coupons, isLoading };
+  useEffect(() => {
+    fetchCoupons();
+  }, [fetchCoupons]);
+
+  const refetch = useCallback(() => {
+    fetchCoupons();
+  }, [fetchCoupons]);
+
+  return { coupons, isLoading, refetch };
 };

@@ -18,4 +18,17 @@ public class AdminCouponController {
         adminCouponService.saveCoupon(request);
         return ResponseEntity.ok("쿠폰 등록이 완료되었습니다.");
     }
+
+    @PutMapping("/coupons/{id}")
+    public ResponseEntity<String> updateCoupon(@PathVariable Long id,
+                                                @RequestBody AdminCouponCreateRequest request) {
+        adminCouponService.updateCoupon(id, request);
+        return ResponseEntity.ok("쿠폰 수정이 완료되었습니다.");
+    }
+
+    @DeleteMapping("/coupons/{id}")
+    public ResponseEntity<String> deleteCoupon(@PathVariable Long id) {
+        adminCouponService.deleteCoupon(id);
+        return ResponseEntity.ok("쿠폰 삭제가 완료되었습니다.");
+    }
 }

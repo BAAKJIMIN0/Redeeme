@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider } from '../features/auth';
 import Layout from './Layout/Layout';
+import ProtectedRoute from './ProtectedRoute';
 import Home from '../pages/Home'
 import CouponReportPage from "../pages/CouponReportPage";
 import AdminPage from '../pages/AdminPage'
@@ -18,8 +19,10 @@ function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
               <Route path="/coupon-report" element={<CouponReportPage />} />
-              <Route path="/admin" element={<AdminPage />} />
-              <Route path="/admin/coupon-create" element={<CouponCreatePage />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/admin" element={<AdminPage />} />
+                <Route path="/admin/coupon-create" element={<CouponCreatePage />} />
+              </Route>
             </Route>
           </Routes>
         </BrowserRouter>

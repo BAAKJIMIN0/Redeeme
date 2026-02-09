@@ -1,0 +1,125 @@
+import { useState } from 'react';
+import styles from './AdminCouponItem.module.css';
+import type { Game } from '@/entities/game';
+import type { RewardItem } from '@/entities/coupon/index.ts';
+import { useAuth } from '@/features/auth';
+import { createCoupon } from '@/features/admin/api';
+
+interface Props {
+  games: Game[];
+  onCreated: () => void;
+  onCancel: () => void;
+}
+
+function AdminCouponCreateRow({ games, onCreated, onCancel }: Props) {
+  const { token } = useAuth();
+
+  const [gameId, setGameId] = useState<number>(games[0]?.id ?? 0);
+  const [server, setServer] = useState('');
+  const [code, setCode] = useState('');
+  const [description, setDescription] = useState('');
+  const [rewards, setRewards] = useState<RewardItem[]>([{ item: '', amount: 0 }]);
+  const [startedAt, setStartedAt] = useState(new Date().toISOString().split('T')[0]);
+  const [expiredAt, setExpiredAt] = useState('');
+
+  const selectedGame = games.find((g) => g.id === gameId);
+  const servers = selectedGame?.servers ?? [];
+
+  const handleGameChange = (id: number) => {
+    setGameId(id);
+    const game = games.find((g) => g.id === id);
+    const srvList = game?.servers ?? [];
+    setServer(srvList.length > 0 ? srvList[0] : '');
+  };
+
+  const handleRewardChange = (index: number, field: keyof RewardItem, value: string) => {
+    const updated = [...rewards];
+    if (field === 'amount') {
+      updated[index] = { ...updated[index], amount: Number(value) };
+    } else {
+      updated[index] = { ...updated[index], [field]: value };
+    }
+    setRewards(updated);
+  };
+
+  const addReward = () => setRewards([...rewards, { item: '', amount: 0 }]);
+
+  const removeReward = (index: number) => {
+    if (rewards.length <= 1) return;
+    setRewards(rewards.filter((_, i) => i !== index));
+  };
+
+  const handleSave = async () => {
+    if (!token || !gameId) return;
+    try {
+      await createCoupon(token, {
+        gameId,
+        korName: selectedGame?.korName ?? '',
+        code,
+        description,
+        server,
+        rewards,
+        startedAt,
+        expiredAt: expiredAt || null,
+      });
+      onCreated();
+    } catch (err) {
+      console.error('쿠폰 생성 실패:', err);
+      alert('쿠폰 생성에 실패했습니다.');
+    }
+  };
+
+  const iconUrl = selectedGame ? '/gameIcons/gameIcon_' + selectedGame.slug + '.png' : '';
+
+  return (
+    <tr className={styles.editingRow}>
+      <td className={styles.centerText}>
+        {selectedGame && <img className={styles.gameImg} src={iconUrl} alt={selectedGame.korName} />}
+        <select
+          className={styles.editInput}
+          value={gameId}
+          onChange={(e) => handleGameChange(Number(e.target.value))}
+        >
+          {games.map((g) => (
+            <option key={g.id} value={g.id}>{g.korName}</option>
+          ))}
+        </select>
+      </td>
+      <td>
+        {servers.length > 1 ? (
+          <select className={styles.editInput} value={server} onChange={(e) => setServer(e.target.value)}>
+            {servers.map((s) => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </select>
+        ) : (
+          <span>{servers[0] ?? ''}</span>
+        )}
+      </td>
+      <td>
+        <input className={styles.editInput} value={code} onChange={(e) => setCode(e.target.value)} placeholder="코드" />
+        <input className={styles.editInput} value={description} onChange={(e) => setDescription(e.target.value)} placeholder="설명" />
+      </td>
+      <td>
+        {rewards.map((reward, i) => (
+          <div key={i} className={styles.rewardEditRow}>
+            <input className={styles.editInput} value={reward.item} onChange={(e) => handleRewardChange(i, 'item', e.target.value)} placeholder="아이템" />
+            <input className={styles.editInputSmall} type="number" value={reward.amount} onChange={(e) => handleRewardChange(i, 'amount', e.target.value)} />
+            <button className={styles.cancelBtn} type="button" onClick={() => removeReward(i)}>−</button>
+          </div>
+        ))}
+        <button className={styles.editBtn} type="button" onClick={addReward}>+ 보상</button>
+      </td>
+      <td>
+        <input className={styles.editInput} type="date" value={startedAt} onChange={(e) => setStartedAt(e.target.value)} />
+        <input className={styles.editInput} type="date" value={expiredAt} onChange={(e) => setExpiredAt(e.target.value)} />
+      </td>
+      <td className={styles.actionCell}>
+        <button className={styles.saveBtn} onClick={handleSave}>저장</button>
+        <button className={styles.cancelBtn} onClick={onCancel}>취소</button>
+      </td>
+    </tr>
+  );
+}
+
+export default AdminCouponCreateRow;

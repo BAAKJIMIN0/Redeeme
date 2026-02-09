@@ -1,0 +1,167 @@
+import { useState } from 'react';
+import styles from './AdminCouponItem.module.css';
+import type { Coupon, RewardItem } from '@/entities/coupon/index.ts';
+import { useAuth } from '@/features/auth';
+import { updateCoupon, deleteCoupon } from '@/features/admin/api';
+
+interface Props {
+  coupon: Coupon;
+  servers: string[];
+  onChanged: () => void;
+}
+
+function AdminCouponItem({ coupon, servers, onChanged }: Props) {
+  const { token } = useAuth();
+  const [editing, setEditing] = useState(false);
+
+  const [code, setCode] = useState(coupon.code);
+  const [description, setDescription] = useState(coupon.description ?? '');
+  const [server, setServer] = useState(coupon.server);
+  const [rewards, setRewards] = useState<RewardItem[]>(coupon.rewards ?? []);
+  const [startedAt, setStartedAt] = useState(coupon.startedAt);
+  const [expiredAt, setExpiredAt] = useState(coupon.expiredAt ?? '');
+  const [quickUrl, setQuickUrl] = useState(coupon.quickUrl ?? '');
+
+  const iconUrl = '/gameIcons/gameIcon_' + coupon.slug + '.png';
+
+  const formatDate = (dateStr?: string) => {
+    if (!dateStr) return '무기한';
+    return dateStr.split(' ')[0];
+  };
+
+  const getExpirationClass = (exp?: string) => {
+    if (!exp) return '';
+    const now = new Date();
+    const expDate = new Date(exp);
+    if (expDate < now) return styles.expired;
+    const threeDays = 3 * 24 * 60 * 60 * 1000;
+    if (expDate.getTime() - now.getTime() <= threeDays) return styles.expiringSoon;
+    return '';
+  };
+
+  const handleRewardChange = (index: number, field: keyof RewardItem, value: string) => {
+    const updated = [...rewards];
+    if (field === 'amount') {
+      updated[index] = { ...updated[index], amount: Number(value) };
+    } else {
+      updated[index] = { ...updated[index], [field]: value };
+    }
+    setRewards(updated);
+  };
+
+  const handleSave = async () => {
+    if (!token) return;
+    try {
+      await updateCoupon(token, coupon.id, {
+        gameId: coupon.gameId,
+        korName: coupon.korName,
+        code,
+        description,
+        server,
+        rewards,
+        startedAt,
+        expiredAt: expiredAt || null,
+        quickUrl,
+      });
+      setEditing(false);
+      onChanged();
+    } catch (err) {
+      console.error('쿠폰 수정 실패:', err);
+      alert('쿠폰 수정에 실패했습니다.');
+    }
+  };
+
+  const handleCancel = () => {
+    setCode(coupon.code);
+    setDescription(coupon.description ?? '');
+    setServer(coupon.server);
+    setRewards(coupon.rewards ?? []);
+    setStartedAt(coupon.startedAt);
+    setExpiredAt(coupon.expiredAt ?? '');
+    setQuickUrl(coupon.quickUrl ?? '');
+    setEditing(false);
+  };
+
+  const handleDelete = async () => {
+    if (!token) return;
+    if (!confirm('정말 이 쿠폰을 삭제하시겠습니까?')) return;
+    try {
+      await deleteCoupon(token, coupon.id);
+      onChanged();
+    } catch (err) {
+      console.error('쿠폰 삭제 실패:', err);
+      alert('쿠폰 삭제에 실패했습니다.');
+    }
+  };
+
+  if (editing) {
+    return (
+      <tr className={styles.editingRow}>
+        <td className={styles.centerText}>
+          <img className={styles.gameImg} src={iconUrl} alt={coupon.korName} />
+        </td>
+        <td>
+          {servers.length > 1 ? (
+            <select className={styles.editInput} value={server} onChange={(e) => setServer(e.target.value)}>
+              {servers.map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
+          ) : (
+            <span>{server}</span>
+          )}
+        </td>
+        <td>
+          <input className={styles.editInput} value={code} onChange={(e) => setCode(e.target.value)} placeholder="코드" />
+          <input className={styles.editInput} value={description} onChange={(e) => setDescription(e.target.value)} placeholder="설명" />
+        </td>
+        <td>
+          {rewards.map((reward, i) => (
+            <div key={i} className={styles.rewardEditRow}>
+              <input className={styles.editInput} value={reward.item} onChange={(e) => handleRewardChange(i, 'item', e.target.value)} placeholder="아이템" />
+              <input className={styles.editInputSmall} type="number" value={reward.amount} onChange={(e) => handleRewardChange(i, 'amount', e.target.value)} />
+            </div>
+          ))}
+        </td>
+        <td>
+          <input className={styles.editInput} type="date" value={startedAt} onChange={(e) => setStartedAt(e.target.value)} />
+          <input className={styles.editInput} type="date" value={expiredAt} onChange={(e) => setExpiredAt(e.target.value)} />
+        </td>
+        <td className={styles.actionCell}>
+          <button className={styles.saveBtn} onClick={handleSave}>저장</button>
+          <button className={styles.cancelBtn} onClick={handleCancel}>취소</button>
+        </td>
+      </tr>
+    );
+  }
+
+  return (
+    <tr>
+      <td className={styles.centerText}>
+        <img className={styles.gameImg} src={iconUrl} alt={coupon.korName} />
+      </td>
+      <td>{coupon.server}</td>
+      <td>
+        <div>{coupon.code}</div>
+        <div className={styles.codeDescription}>{coupon.description}</div>
+      </td>
+      <td>
+        {(coupon.rewards || []).map((reward, index) => (
+          <div key={index} className={styles.rewardItem}>
+            {reward.item} * {reward.amount}
+          </div>
+        ))}
+      </td>
+      <td className={getExpirationClass(coupon.expiredAt)}>
+        <div>등록: {formatDate(coupon.startedAt)}</div>
+        <div>마감: {formatDate(coupon.expiredAt)}</div>
+      </td>
+      <td className={styles.actionCell}>
+        <button className={styles.editBtn} onClick={() => setEditing(true)}>수정</button>
+        <button className={styles.deleteBtn} onClick={handleDelete}>삭제</button>
+      </td>
+    </tr>
+  );
+}
+
+export default AdminCouponItem;

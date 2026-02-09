@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import styles from './AdminCouponTable.module.css'
-import { CouponItem, useCoupons } from '@/entities/coupon/index.ts';
+import { useCoupons } from '@/entities/coupon/index.ts';
 import type { Coupon } from '@/entities/coupon/index.ts';
+import { useGames } from '@/entities/game';
+import AdminCouponItem from './AdminCouponItem';
+import AdminCouponCreateRow from './AdminCouponCreateRow';
 
 type SortMode = 'default' | 'latest' | 'expiry';
 
@@ -64,8 +67,10 @@ interface CouponTableProps {
 }
 
 function AdminCouponTable({ selectedGameIds }: CouponTableProps) {
-  const { coupons } = useCoupons(selectedGameIds);
+  const { coupons, refetch } = useCoupons(selectedGameIds);
+  const { games } = useGames();
   const [sortMode, setSortMode] = useState<SortMode>('default');
+  const [adding, setAdding] = useState(false);
 
   const cycleSortMode = () => {
     setSortMode((prev) => {
@@ -101,10 +106,28 @@ function AdminCouponTable({ selectedGameIds }: CouponTableProps) {
         </tr>
       </thead>
       <tbody>
-        {sortCoupons(coupons, sortMode).map((coupon) => (
-            <CouponItem key={coupon.id} coupon={coupon} />
-          ))}
-        <th>1</th>
+        {adding ? (
+          <AdminCouponCreateRow
+            games={games}
+            onCreated={() => { setAdding(false); refetch(); }}
+            onCancel={() => setAdding(false)}
+          />
+        ) : (
+          <tr>
+            <td colSpan={6} className={styles.addRow} onClick={() => setAdding(true)}>+</td>
+          </tr>
+        )}
+        {sortCoupons(coupons, sortMode).map((coupon) => {
+          const game = games.find((g) => g.id === coupon.gameId);
+          return (
+            <AdminCouponItem
+              key={coupon.id}
+              coupon={coupon}
+              servers={game?.servers ?? []}
+              onChanged={refetch}
+            />
+          );
+        })}
       </tbody>
     </table>
   )

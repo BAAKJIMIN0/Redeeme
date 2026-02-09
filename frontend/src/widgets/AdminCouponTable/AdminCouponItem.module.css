@@ -1,0 +1,97 @@
+.gameImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.codeDescription {
+  font-size: 12px;
+  color: var(--color-text-gray);
+}
+
+.centerText {
+  text-align: center;
+}
+
+.rewardItem {
+  word-break: keep-all;
+}
+
+.expired {
+  background-color: #fee2e2;
+}
+
+.expiringSoon {
+  background-color: #fef9c3;
+}
+
+.actionCell {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.editBtn,
+.deleteBtn,
+.saveBtn,
+.cancelBtn {
+  border: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.editBtn {
+  background-color: #e0e7ff;
+  color: #3730a3;
+}
+
+.deleteBtn {
+  background-color: #fee2e2;
+  color: #991b1b;
+  margin-left: 4px;
+}
+
+.saveBtn {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.cancelBtn {
+  background-color: #f3f4f6;
+  color: #374151;
+  margin-left: 4px;
+}
+
+.editBtn:hover { background-color: #c7d2fe; }
+.deleteBtn:hover { background-color: #fecaca; }
+.saveBtn:hover { background-color: #a7f3d0; }
+.cancelBtn:hover { background-color: #e5e7eb; }
+
+.editingRow {
+  background-color: #f9fafb;
+}
+
+.editInput {
+  width: 100%;
+  padding: 2px 4px;
+  border: 1px solid var(--color-border-light, #d1d5db);
+  border-radius: 4px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.editInputSmall {
+  width: 60px;
+  padding: 2px 4px;
+  border: 1px solid var(--color-border-light, #d1d5db);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.rewardEditRow {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 2px;
+}

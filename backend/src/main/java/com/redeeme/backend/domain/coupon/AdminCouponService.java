@@ -31,4 +31,28 @@ public class AdminCouponService {
         coupon.setActive(true);
         couponRepository.save(coupon);
     }
+
+    @Transactional
+    public void updateCoupon(Long id, AdminCouponCreateRequest dto) {
+        Coupon coupon = couponRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 쿠폰 ID입니다: " + id));
+        Game game = gameRepository.findById(dto.getGameId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게임 ID입니다: " + dto.getGameId()));
+        coupon.setGame(game);
+        coupon.setCode(dto.getCode());
+        coupon.setDescription(dto.getDescription());
+        coupon.setServer(dto.getServer());
+        coupon.setRewards(objectMapper.valueToTree(dto.getRewards()));
+        coupon.setStartedAt(dto.getStartedAt());
+        coupon.setExpiredAt(dto.getExpiredAt());
+        coupon.setQuickUrl(dto.getQuickUrl());
+    }
+
+    @Transactional
+    public void deleteCoupon(Long id) {
+        if (!couponRepository.existsById(id)) {
+            throw new IllegalArgumentException("존재하지 않는 쿠폰 ID입니다: " + id);
+        }
+        couponRepository.deleteById(id);
+    }
 }

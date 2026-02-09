@@ -2,11 +2,13 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGames } from '@/entities/game/index.ts'
+import { useAuth } from '@/features/auth';
 import styles from './CouponReportForm.module.css';
 import type { RewardItem } from '@/entities/coupon/index.ts';
 
 function CouponReportForm() {
   const navigate = useNavigate();
+  const { token } = useAuth();
   const { games, loading } = useGames();
   
   const [selectedGameId, setSelectedGameId] = useState('');
@@ -95,7 +97,8 @@ function CouponReportForm() {
   try {
       await axios.post(
         'http://localhost:8080/api/admin/coupon-create',
-        payload
+        payload,
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       alert('쿠폰이 등록되었습니다!');
