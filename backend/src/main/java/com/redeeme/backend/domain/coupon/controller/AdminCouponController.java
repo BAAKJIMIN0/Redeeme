@@ -10,8 +10,6 @@ import com.redeeme.backend.domain.coupon.AdminCouponService;
 @RestController
 @RequestMapping("api/admin")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
-
 public class AdminCouponController {
     private final AdminCouponService adminCouponService;
 
