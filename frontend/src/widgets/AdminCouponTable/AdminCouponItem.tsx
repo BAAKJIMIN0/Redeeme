@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import styles from './AdminCouponItem.module.css';
 import type { Coupon, RewardItem } from '@/entities/coupon/index.ts';
+import type { Game } from '@/entities/game';
 import { useAuth } from '@/features/auth';
 import { updateCoupon, deleteCoupon } from '@/features/admin/api';
+import GameIconPicker from './GameIconPicker';
 
 interface Props {
   coupon: Coupon;
+  games: Game[];
   servers: string[];
   onChanged: () => void;
 }
 
-function AdminCouponItem({ coupon, servers, onChanged }: Props) {
+function AdminCouponItem({ coupon, games, servers, onChanged }: Props) {
   const { token } = useAuth();
   const [editing, setEditing] = useState(false);
 
+  const [gameId, setGameId] = useState(coupon.gameId);
   const [code, setCode] = useState(coupon.code);
   const [description, setDescription] = useState(coupon.description ?? '');
   const [server, setServer] = useState(coupon.server);
@@ -23,7 +27,16 @@ function AdminCouponItem({ coupon, servers, onChanged }: Props) {
   const [quickUrl, setQuickUrl] = useState(coupon.quickUrl ?? '');
   const [showUrlInput, setShowUrlInput] = useState(false);
 
+  const selectedGame = games.find((g) => g.id === gameId);
+  const editServers = selectedGame?.servers ?? servers;
   const iconUrl = '/gameIcons/gameIcon_' + coupon.slug + '.png';
+
+  const handleGameChange = (id: number) => {
+    setGameId(id);
+    const game = games.find((g) => g.id === id);
+    const srvList = game?.servers ?? [];
+    setServer(srvList.length > 0 ? srvList[0] : '');
+  };
 
   const formatDate = (dateStr?: string) => {
     if (!dateStr) return '무기한';
@@ -58,8 +71,8 @@ function AdminCouponItem({ coupon, servers, onChanged }: Props) {
     if (!token) return;
     try {
       await updateCoupon(token, coupon.id, {
-        gameId: coupon.gameId,
-        korName: coupon.korName,
+        gameId,
+        korName: selectedGame?.korName ?? coupon.korName,
         code,
         description,
         server,
@@ -77,6 +90,7 @@ function AdminCouponItem({ coupon, servers, onChanged }: Props) {
   };
 
   const handleCancel = () => {
+    setGameId(coupon.gameId);
     setCode(coupon.code);
     setDescription(coupon.description ?? '');
     setServer(coupon.server);
@@ -104,17 +118,17 @@ function AdminCouponItem({ coupon, servers, onChanged }: Props) {
     return (
       <tr className={styles.editingRow}>
         <td className={styles.centerText}>
-          <img className={styles.gameImg} src={iconUrl} alt={coupon.korName} />
+          <GameIconPicker games={games} selectedGameId={gameId} onChange={handleGameChange} />
         </td>
         <td>
-          {servers.length > 1 ? (
+          {editServers.length > 1 ? (
             <select className={styles.editInput} value={server} onChange={(e) => setServer(e.target.value)}>
-              {servers.map((s) => (
+              {editServers.map((s) => (
                 <option key={s} value={s}>{s}</option>
               ))}
             </select>
           ) : (
-            <span>{server}</span>
+            <span>{editServers[0] ?? server}</span>
           )}
         </td>
         <td>

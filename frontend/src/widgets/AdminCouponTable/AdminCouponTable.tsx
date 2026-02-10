@@ -123,6 +123,7 @@ function AdminCouponTable({ selectedGameIds }: CouponTableProps) {
             <AdminCouponItem
               key={coupon.id}
               coupon={coupon}
+              games={games}
               servers={game?.servers ?? []}
               onChanged={refetch}
             />

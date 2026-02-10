@@ -4,6 +4,7 @@ import type { Game } from '@/entities/game';
 import type { RewardItem } from '@/entities/coupon/index.ts';
 import { useAuth } from '@/features/auth';
 import { createCoupon } from '@/features/admin/api';
+import GameIconPicker from './GameIconPicker';
 
 interface Props {
   games: Game[];
@@ -72,21 +73,10 @@ function AdminCouponCreateRow({ games, onCreated, onCancel }: Props) {
     }
   };
 
-  const iconUrl = selectedGame ? '/gameIcons/gameIcon_' + selectedGame.slug + '.png' : '';
-
   return (
     <tr className={styles.editingRow}>
       <td className={styles.centerText}>
-        {selectedGame && <img className={styles.gameImg} src={iconUrl} alt={selectedGame.korName} />}
-        <select
-          className={styles.editInput}
-          value={gameId}
-          onChange={(e) => handleGameChange(Number(e.target.value))}
-        >
-          {games.map((g) => (
-            <option key={g.id} value={g.id}>{g.korName}</option>
-          ))}
-        </select>
+        <GameIconPicker games={games} selectedGameId={gameId} onChange={handleGameChange} />
       </td>
       <td>
         {servers.length > 1 ? (
