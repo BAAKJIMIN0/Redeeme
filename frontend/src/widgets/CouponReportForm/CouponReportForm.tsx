@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGames } from '@/entities/game/index.ts'
+import { useGames, GameIcon } from '@/entities/game/index.ts'
 import { useAuth } from '@/features/auth';
 import styles from './CouponReportForm.module.css';
 import type { RewardItem } from '@/entities/coupon/index.ts';
@@ -101,7 +101,9 @@ function CouponReportForm() {
       );
 
       alert('쿠폰 제보가 완료되었습니다, 감사합니다!');
-      navigate('/');
+      setCode('');
+      setRewards([{ item: '', amount: 0 }]);
+      setQuickUrl('');
     } catch (error) {
       console.error('쿠폰 등록 실패:', error);
       alert('쿠폰 등록에 실패했습니다.');
@@ -111,18 +113,14 @@ function CouponReportForm() {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.field}>
-        <label className={styles.label}>게임 선택</label>
         <div className={styles.gameIconList}>
           {!loading && games?.map(game => (
-            <button
+            <GameIcon
               key={game.id}
-              type="button"
-              className={`${styles.gameIconBtn} ${selectedGameId === game.id.toString() ? styles.selected : ''}`}
-              onClick={() => handleGameSelect(game.id.toString())}
-              title={game.korName}
-            >
-              <img src={`/gameIcons/gameIcon_${game.slug}.png`} alt={game.korName} />
-            </button>
+              game={game}
+              isSelected={selectedGameId === game.id.toString()}
+              onToggle={() => handleGameSelect(game.id.toString())}
+            />
           ))}
           <button
             type="button"

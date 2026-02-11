@@ -13,12 +13,13 @@ export const GameIcon = ({ game, isSelected, onToggle }: Props) => {
   return (
     <label
       className={`${styles.gameButton} ${isSelected ? styles.active : ''}`}
+      title={game.korName}
     >
-      <input 
-        type="checkbox" 
-        checked={isSelected} 
+      <input
+        type="checkbox"
+        checked={isSelected}
         onChange={() => onToggle(game.id)}
-        className={styles.hiddenCheckbox} 
+        className={styles.hiddenCheckbox}
       />
       <div className={styles.iconWrapper}>
         <img src={iconUrl} alt={game.korName} />

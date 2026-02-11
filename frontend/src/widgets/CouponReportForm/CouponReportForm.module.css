@@ -115,45 +115,17 @@
 .gameIconList {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  align-content: flex-start;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
   margin-bottom: 12px;
 }
 
-.gameIconBtn {
-  width: 52px;
-  height: 52px;
-  border: 2px solid var(--color-border-light);
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  background: none;
-  padding: 0;
-  transition: border-color 0.15s, transform 0.1s;
-}
-
-.gameIconBtn:hover {
-  border-color: #aaa;
-}
-
-.gameIconBtn:active {
-  transform: scale(0.95);
-}
-
-.gameIconBtn.selected {
-  border-color: #2ecc71;
-  border-width: 3px;
-}
-
-.gameIconBtn img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .customBtn {
-  width: 52px;
-  height: 52px;
+  width: 60px;
+  height: 60px;
   border: 2px dashed var(--color-border-light);
   border-radius: 10px;
   cursor: pointer;
