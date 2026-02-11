@@ -1,4 +1,3 @@
-import styles from './Home.module.css'
 import { useNavigate } from 'react-router-dom';
 import GameListContainer from '../widgets/GameListContainer/GameListContainer'
 import CouponTable from '../widgets/CouponTable/CouponTable'
@@ -14,12 +13,11 @@ function HomePage() {
 
   return (
     <>
-      <button
-        style={{ marginBottom: '16px', width: 100, cursor: 'pointer' }}
-        onClick={handleReportClick}
-      >
-        제보하기
-      </button>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '12px' }}>
+        <button className="actionBtn" onClick={handleReportClick}>
+          쿠폰 제보하기
+        </button>
+      </div>
       <GameListContainer selectedGameIds={selectedGameIds} onToggle={toggle} />
       <CouponTable selectedGameIds={selectedGameIds} />
     </>

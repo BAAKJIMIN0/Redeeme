@@ -25,14 +25,13 @@ function CouponReportForm() {
   const [expiredAt, setExpiredAt] = useState('');
   const [quickUrl, setQuickUrl] = useState('');
 
-  const handleGameChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
+  const handleGameSelect = (value: string) => {
     setSelectedGameId(value);
-    
+
     if (value === 'custom') {
       setIsCustom(true);
       setAvailableServers([]);
-      setSelectedServer(''); 
+      setSelectedServer('');
     } else {
       setIsCustom(false);
       const selectedGame = games.find(g => g.id.toString() === value);
@@ -62,9 +61,9 @@ function CouponReportForm() {
   const handleRewardChange = (index: number, field: keyof RewardItem, value: string) => {
     const newRewards = [...rewards];
     if (field === 'amount') {
-      newRewards[index][field] = Number(value) as any; 
+      newRewards[index] = { ...newRewards[index], amount: Number(value) };
     } else {
-      newRewards[index][field] = value as any;
+      newRewards[index] = { ...newRewards[index], [field]: value };
     }
     setRewards(newRewards);
   };
@@ -96,12 +95,12 @@ function CouponReportForm() {
     
   try {
       await axios.post(
-        'http://localhost:8080/api/admin/coupon-create',
+        'http://localhost:8080/api/coupon-reports',
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      alert('쿠폰이 등록되었습니다!');
+      alert('쿠폰 제보가 완료되었습니다, 감사합니다!');
       navigate('/');
     } catch (error) {
       console.error('쿠폰 등록 실패:', error);
@@ -113,18 +112,27 @@ function CouponReportForm() {
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.field}>
         <label className={styles.label}>게임 선택</label>
-        <select 
-          className={styles.select}
-          value={selectedGameId} 
-          onChange={handleGameChange} 
-          required
-        >
-          <option value="" disabled>게임을 선택해 주세요</option>
+        <div className={styles.gameIconList}>
           {!loading && games?.map(game => (
-            <option key={game.id} value={game.id.toString()}>{game.korName}</option>
+            <button
+              key={game.id}
+              type="button"
+              className={`${styles.gameIconBtn} ${selectedGameId === game.id.toString() ? styles.selected : ''}`}
+              onClick={() => handleGameSelect(game.id.toString())}
+              title={game.korName}
+            >
+              <img src={`/gameIcons/gameIcon_${game.slug}.png`} alt={game.korName} />
+            </button>
           ))}
-          <option value="custom">기타</option>
-        </select>
+          <button
+            type="button"
+            className={`${styles.customBtn} ${selectedGameId === 'custom' ? styles.selected : ''}`}
+            onClick={() => handleGameSelect('custom')}
+            title="기타"
+          >
+            기타
+          </button>
+        </div>
       </div>
 
       {isCustom && (
@@ -140,10 +148,22 @@ function CouponReportForm() {
         </div>
       )}
 
+      {!isCustom && availableServers.length === 1 && (
+        <div className={styles.field}>
+          <label className={styles.label}>서버 선택</label>
+          <input
+            className={styles.input}
+            type="text"
+            value={selectedServer}
+            readOnly
+          />
+        </div>
+      )}
+
       {!isCustom && availableServers.length > 1 && (
         <div className={styles.field}>
           <label className={styles.label}>서버 선택</label>
-          <select 
+          <select
             className={styles.select}
             value={selectedServer}
             onChange={(e) => setSelectedServer(e.target.value)}

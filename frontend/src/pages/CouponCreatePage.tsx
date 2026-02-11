@@ -1,4 +1,3 @@
-import styles from './CouponReportPage.module.css'
 import { useNavigate } from 'react-router-dom';
 import CouponReportForm from '../widgets/CouponReportForm/CouponReportForm'
 

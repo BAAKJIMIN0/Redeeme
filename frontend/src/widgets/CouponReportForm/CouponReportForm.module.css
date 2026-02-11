@@ -112,6 +112,74 @@
   justify-content: center;
 }
 
+.gameIconList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.gameIconBtn {
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--color-border-light);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  transition: border-color 0.15s, transform 0.1s;
+}
+
+.gameIconBtn:hover {
+  border-color: #aaa;
+}
+
+.gameIconBtn:active {
+  transform: scale(0.95);
+}
+
+.gameIconBtn.selected {
+  border-color: #2ecc71;
+  border-width: 3px;
+}
+
+.gameIconBtn img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.customBtn {
+  width: 52px;
+  height: 52px;
+  border: 2px dashed var(--color-border-light);
+  border-radius: 10px;
+  cursor: pointer;
+  background: #f9f9f9;
+  font-size: 12px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, transform 0.1s;
+}
+
+.customBtn:hover {
+  border-color: #aaa;
+}
+
+.customBtn:active {
+  transform: scale(0.95);
+}
+
+.customBtn.selected {
+  border-color: #2ecc71;
+  border-style: solid;
+  border-width: 3px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

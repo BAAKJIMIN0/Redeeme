@@ -7,6 +7,7 @@ import Home from '../pages/Home'
 import CouponReportPage from "../pages/CouponReportPage";
 import AdminPage from '../pages/AdminPage'
 import CouponCreatePage from '../pages/CouponCreatePage'
+import AdminReportsPage from '../pages/AdminReportsPage'
 
 const GOOGLE_CLIENT_ID = '815467473744-7s3bfsjcil6jfnp53vsotj8vm27kean1.apps.googleusercontent.com';
 
@@ -22,6 +23,7 @@ function App() {
               <Route element={<ProtectedRoute />}>
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/admin/coupon-create" element={<CouponCreatePage />} />
+                <Route path="/admin/coupon-reports" element={<AdminReportsPage />} />
               </Route>
             </Route>
           </Routes>

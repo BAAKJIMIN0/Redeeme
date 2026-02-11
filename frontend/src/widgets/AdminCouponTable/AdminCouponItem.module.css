@@ -111,6 +111,7 @@
   cursor: pointer;
   user-select: all;
   font-family: inherit;
+  font-weight: 500;
   transition: background-color 0.15s;
 }
 

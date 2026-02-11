@@ -1,4 +1,3 @@
-import styles from './CouponReportPage.module.css'
 import { useNavigate } from 'react-router-dom';
 import CouponReportForm from '../widgets/CouponReportForm/CouponReportForm'
 
@@ -11,12 +10,11 @@ function CouponReportPage() {
 
   return (
     <>
-      <button 
-        style={{ marginBottom: '16px', width: 100, cursor: 'pointer' }} 
-        onClick={handleReportClick}
-      >
-        돌아가기
-      </button>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '12px' }}>
+        <button className="actionBtn" onClick={handleReportClick}>
+          돌아가기
+        </button>
+      </div>
       <CouponReportForm />
     </>
   )

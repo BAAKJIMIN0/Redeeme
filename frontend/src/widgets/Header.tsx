@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../features/auth';
 
@@ -18,7 +19,9 @@ function Header() {
       alignItems: 'center',
       justifyContent: 'space-between',
     }}>
-      <h2>리딤이</h2>
+      <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h2>리딤이</h2>
+      </Link>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
         {loading ? null : user ? (
           <>
