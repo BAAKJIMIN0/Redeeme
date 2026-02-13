@@ -50,7 +50,6 @@ function AdminReportTable() {
 
   const handleDelete = async (id: number) => {
     if (!token) return;
-    if (!confirm('정말 이 제보를 삭제하시겠습니까?')) return;
     try {
       await deleteReport(token, id);
       refetch();
