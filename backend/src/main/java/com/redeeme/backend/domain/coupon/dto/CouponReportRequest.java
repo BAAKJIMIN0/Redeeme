@@ -16,7 +16,6 @@ public class CouponReportRequest {
     private String code;
     private String description;
     private List<Map<String, Object>> rewards;
-    private LocalDate startedAt;
     private LocalDate expiredAt;
     private String quickUrl;
 }

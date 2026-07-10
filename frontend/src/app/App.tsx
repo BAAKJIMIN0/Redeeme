@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { AuthProvider } from '../features/auth';
-import Layout from './Layout/Layout';
-import ProtectedRoute from './ProtectedRoute';
+import { AuthProvider } from '@/hooks/AuthContext';
+import Layout from '@/components/Layout/Layout';
+import ProtectedRoute from '@/components/ProtectedRoute';
 import Home from '../pages/Home'
 import CouponReportPage from "../pages/CouponReportPage";
 import AdminPage from '../pages/AdminPage'

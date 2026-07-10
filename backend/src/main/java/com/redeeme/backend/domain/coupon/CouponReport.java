@@ -51,7 +51,6 @@ public class CouponReport {
     @Column(name = "rewards", columnDefinition = "json")
     private JsonNode rewards;
 
-    private LocalDate startedAt;
     private LocalDate expiredAt;
     private String quickUrl;
     private LocalDateTime createdAt;

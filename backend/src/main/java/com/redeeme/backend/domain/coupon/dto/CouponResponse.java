@@ -4,6 +4,7 @@ import com.redeeme.backend.domain.coupon.Coupon;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -18,7 +19,7 @@ public class CouponResponse {
     private String description;
     private String server;
     private JsonNode rewards;
-    private LocalDate startedAt;
+    private LocalDateTime createdAt;
     private LocalDate expiredAt;
     private String quickUrl;
 
@@ -32,7 +33,7 @@ public class CouponResponse {
         this.description = coupon.getDescription();
         this.server = coupon.getServer();
         this.rewards = coupon.getRewards();
-        this.startedAt = coupon.getStartedAt();
+        this.createdAt = coupon.getCreatedAt();
         this.expiredAt = coupon.getExpiredAt();
         this.quickUrl = coupon.getQuickUrl();
     }

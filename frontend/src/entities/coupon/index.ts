@@ -1,5 +1,0 @@
-export * from './ui/CouponItem'
-export * from './api/getCoupons'
-export * from './model/useCoupons'
-export type { Coupon } from './model/types'
-export type { RewardItem } from './model/types'

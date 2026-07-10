@@ -43,7 +43,6 @@ public class CouponReportService {
         report.setCode(dto.getCode());
         report.setDescription(dto.getDescription());
         report.setRewards(objectMapper.valueToTree(dto.getRewards()));
-        report.setStartedAt(dto.getStartedAt());
         report.setExpiredAt(dto.getExpiredAt());
         report.setQuickUrl(dto.getQuickUrl());
 
@@ -73,7 +72,6 @@ public class CouponReportService {
         coupon.setDescription(report.getDescription());
         coupon.setServer(report.getServer());
         coupon.setRewards(report.getRewards());
-        coupon.setStartedAt(report.getStartedAt());
         coupon.setExpiredAt(report.getExpiredAt());
         coupon.setQuickUrl(report.getQuickUrl());
         coupon.setActive(true);

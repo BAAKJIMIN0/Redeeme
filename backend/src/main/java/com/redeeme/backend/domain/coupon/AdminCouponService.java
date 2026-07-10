@@ -25,7 +25,6 @@ public class AdminCouponService {
         coupon.setDescription(dto.getDescription());
         coupon.setServer(dto.getServer());
         coupon.setRewards(objectMapper.valueToTree(dto.getRewards()));
-        coupon.setStartedAt(dto.getStartedAt());
         coupon.setExpiredAt(dto.getExpiredAt());
         coupon.setQuickUrl(dto.getQuickUrl());
         coupon.setActive(true);
@@ -43,7 +42,6 @@ public class AdminCouponService {
         coupon.setDescription(dto.getDescription());
         coupon.setServer(dto.getServer());
         coupon.setRewards(objectMapper.valueToTree(dto.getRewards()));
-        coupon.setStartedAt(dto.getStartedAt());
         coupon.setExpiredAt(dto.getExpiredAt());
         coupon.setQuickUrl(dto.getQuickUrl());
     }

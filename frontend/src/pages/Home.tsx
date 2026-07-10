@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import GameListContainer from '../widgets/GameListContainer/GameListContainer'
-import CouponTable from '../widgets/CouponTable/CouponTable'
-import { useToggleGame } from '@/features/coupon-filter'
+import GameListContainer from '@/components/GameListContainer/GameListContainer'
+import CouponTable from '@/components/CouponTable/CouponTable'
+import { useToggleGame } from '@/hooks/useToggleGame'
 
 function HomePage() {
   const navigate = useNavigate();

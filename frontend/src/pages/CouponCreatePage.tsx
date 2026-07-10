@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import CouponReportForm from '../widgets/CouponReportForm/CouponReportForm'
+import CouponReportForm from '@/components/CouponReportForm/CouponReportForm'
 
 function CouponReportPage() {
   const navigate = useNavigate();

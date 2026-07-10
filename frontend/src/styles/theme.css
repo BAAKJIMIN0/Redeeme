@@ -1,0 +1,47 @@
+:root {
+  /* Base */
+  --color-black: #0F172A;
+  --color-white: #FFFFFF;
+  --color-gray: #2a2a2a;
+
+  /* Text */
+  --color-text-black: #222222;
+  --color-text-gray: #888888;
+  --color-text-white: #F9FAFB;
+
+  /* Border / Divider */
+  --color-border-light: #DDDDDD;
+  --color-border-dark:  #1F2937;
+}
+
+@font-face {
+  font-family: 'BaseFont';
+  src: url('../assets/fonts/NEXON Lv2 Gothic Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BaseFont';
+  src: url('../assets/fonts/NEXON Lv2 Gothic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BaseFont';
+  src: url('../assets/fonts/NEXON Lv2 Gothic Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BaseFont';
+  src: url('../assets/fonts/NEXON Lv2 Gothic Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import AdminInquiryList from '@/widgets/AdminInquiryList/AdminInquiryList';
+import AdminInquiryList from '@/components/AdminInquiryList/AdminInquiryList';
 
 function AdminInquiriesPage() {
   const navigate = useNavigate();

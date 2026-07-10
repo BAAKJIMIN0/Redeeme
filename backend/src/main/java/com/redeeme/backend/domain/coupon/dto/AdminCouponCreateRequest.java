@@ -19,6 +19,5 @@ public class AdminCouponCreateRequest {
     private String quickUrl;
     private List<Map<String, Object>> rewards;
     private String server;
-    private LocalDate startedAt;
     private LocalDate expiredAt;
 }

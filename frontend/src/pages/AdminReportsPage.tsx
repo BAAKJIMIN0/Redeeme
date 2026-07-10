@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import AdminReportTable from '@/widgets/AdminReportTable/AdminReportTable';
+import AdminReportTable from '@/components/AdminReportTable/AdminReportTable';
 
 function AdminReportsPage() {
   const navigate = useNavigate();

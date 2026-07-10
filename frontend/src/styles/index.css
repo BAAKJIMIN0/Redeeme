@@ -1,0 +1,54 @@
+:root {
+  --font-base: 'BaseFont';
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color-scheme: light dark;
+  color: var(--color-text-black);
+  background-color: var(--color-white);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: var(--font-base);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-text-black);
+  background-color: var(--color-white);
+}
+
+.actionBtn {
+  min-width: 120px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--color-border-light);
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.actionBtn:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: #bbb;
+}
+
+.actionBtn:active {
+  transform: scale(0.96);
+  background: rgba(0, 0, 0, 0.08);
+}

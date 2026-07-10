@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import GameListContainer from '../widgets/GameListContainer/GameListContainer'
-import AdminCouponTable from '../widgets/AdminCouponTable/AdminCouponTable'
-import { useToggleGame } from '@/features/coupon-filter'
+import GameListContainer from '@/components/GameListContainer/GameListContainer'
+import AdminCouponTable from '@/components/AdminCouponTable/AdminCouponTable'
+import { useToggleGame } from '@/hooks/useToggleGame'
 
 function HomePage() {
   const navigate = useNavigate();

@@ -20,7 +20,6 @@ public class CouponReportResponse {
     private final String code;
     private final String description;
     private final List<Map<String, Object>> rewards;
-    private final LocalDate startedAt;
     private final LocalDate expiredAt;
     private final String quickUrl;
     private final LocalDateTime createdAt;
@@ -34,7 +33,6 @@ public class CouponReportResponse {
         this.server = report.getServer();
         this.code = report.getCode();
         this.description = report.getDescription();
-        this.startedAt = report.getStartedAt();
         this.expiredAt = report.getExpiredAt();
         this.quickUrl = report.getQuickUrl();
         this.createdAt = report.getCreatedAt();
