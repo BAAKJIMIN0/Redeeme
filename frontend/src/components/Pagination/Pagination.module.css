@@ -1,0 +1,40 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.pageBtn {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--color-border-light);
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.pageBtn:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: #bbb;
+}
+
+.pageBtn:active {
+  transform: scale(0.96);
+}
+
+.active {
+  background: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.active:hover {
+  background: var(--color-black);
+}

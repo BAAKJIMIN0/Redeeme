@@ -1,0 +1,14 @@
+.rewardItem {
+  word-break: keep-all;
+}
+
+.toggle {
+  font-size: 12px;
+  color: var(--color-text-gray);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.toggle:hover {
+  color: var(--color-text-black);
+}

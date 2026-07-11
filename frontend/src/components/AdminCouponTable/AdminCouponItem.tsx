@@ -4,6 +4,9 @@ import type { Coupon, RewardItem, Game } from '@/types';
 import { useAuth } from '@/hooks/useAuth';
 import { updateCoupon, deleteCoupon } from '@/api/admin';
 import { formatRelativeTime } from '@/utils/formatRelativeTime';
+import ExpiryBadge from '@/components/ExpiryBadge/ExpiryBadge';
+import RewardList from '@/components/RewardList/RewardList';
+import { useToast } from '@/hooks/useToast';
 import GameIconPicker from './GameIconPicker';
 
 interface Props {
@@ -15,6 +18,7 @@ interface Props {
 
 function AdminCouponItem({ coupon, games, servers, onChanged }: Props) {
   const { token } = useAuth();
+  const { showToast } = useToast();
   const [editing, setEditing] = useState(false);
 
   const [gameId, setGameId] = useState(coupon.gameId);
@@ -37,23 +41,9 @@ function AdminCouponItem({ coupon, games, servers, onChanged }: Props) {
     setServer(srvList.length > 0 ? srvList[0] : '');
   };
 
-  const formatDate = (dateStr?: string) => {
-    if (!dateStr) return '무기한';
-    return dateStr.split(' ')[0];
-  };
-
-  const getExpirationClass = (exp?: string) => {
-    if (!exp) return '';
-    const now = new Date();
-    const expDate = new Date(exp);
-    if (expDate < now) return styles.expired;
-    const threeDays = 3 * 24 * 60 * 60 * 1000;
-    if (expDate.getTime() - now.getTime() <= threeDays) return styles.expiringSoon;
-    return '';
-  };
-
   const handleCopy = () => {
     navigator.clipboard.writeText(coupon.code);
+    showToast('코드가 클립보드에 복사되었습니다');
   };
 
   const handleRewardChange = (index: number, field: keyof RewardItem, value: string) => {
@@ -160,6 +150,7 @@ function AdminCouponItem({ coupon, games, servers, onChanged }: Props) {
         <td>
           <input className={styles.editInput} type="date" value={expiredAt} onChange={(e) => setExpiredAt(e.target.value)} />
         </td>
+        <td className={styles.centerText}>{formatRelativeTime(coupon.createdAt)}</td>
         <td className={styles.actionCell}>
           <button className={styles.saveBtn} onClick={handleSave}>저장</button>
           <button className={styles.cancelBtn} onClick={handleCancel}>취소</button>
@@ -173,7 +164,7 @@ function AdminCouponItem({ coupon, games, servers, onChanged }: Props) {
       <td className={styles.centerText}>
         <img className={styles.gameImg} src={iconUrl} alt={coupon.korName} />
       </td>
-      <td>{coupon.server}</td>
+      <td className={styles.centerText}>{coupon.server}</td>
       <td>
         <div className={styles.codeRow}>
           <span className={styles.codeBox} onClick={handleCopy}>{coupon.code}</span>
@@ -190,16 +181,12 @@ function AdminCouponItem({ coupon, games, servers, onChanged }: Props) {
         <div className={styles.codeDescription}>{coupon.description}</div>
       </td>
       <td>
-        {(coupon.rewards || []).map((reward, index) => (
-          <div key={index} className={styles.rewardItem}>
-            {reward.item} * {reward.amount}
-          </div>
-        ))}
+        <RewardList rewards={coupon.rewards || []} />
       </td>
-      <td className={getExpirationClass(coupon.expiredAt)}>
-        <div>등록: {formatRelativeTime(coupon.createdAt)}</div>
-        <div>마감: {formatDate(coupon.expiredAt)}</div>
+      <td className={styles.centerText}>
+        <ExpiryBadge expiredAt={coupon.expiredAt} />
       </td>
+      <td className={styles.centerText}>{formatRelativeTime(coupon.createdAt)}</td>
       <td className={styles.actionCell}>
         <button className={styles.editBtn} onClick={() => setEditing(true)}>수정</button>
         <button className={styles.deleteBtn} onClick={handleDelete}>삭제</button>

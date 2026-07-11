@@ -1,6 +1,9 @@
 import styles from './CouponItem.module.css'
+import ExpiryBadge from '@/components/ExpiryBadge/ExpiryBadge';
+import RewardList from '@/components/RewardList/RewardList';
 import type { Coupon } from '@/types';
 import { formatRelativeTime } from '@/utils/formatRelativeTime';
+import { useToast } from '@/hooks/useToast';
 
 interface Props {
   coupon: Coupon;
@@ -8,24 +11,11 @@ interface Props {
 
 export const CouponItem = ({ coupon }: Props) => {
   const iconUrl = '/gameIcons/gameIcon_' + coupon.slug + '.png';
-
-  const formatDate = (dateStr?: string) => {
-    if (!dateStr) return '무기한';
-    return dateStr.split(' ')[0];
-  };
-
-  const getExpirationClass = (expiredAt?: string) => {
-    if (!expiredAt) return '';
-    const now = new Date();
-    const expDate = new Date(expiredAt);
-    if (expDate < now) return styles.expired;
-    const threeDays = 3 * 24 * 60 * 60 * 1000;
-    if (expDate.getTime() - now.getTime() <= threeDays) return styles.expiringSoon;
-    return '';
-  };
+  const { showToast } = useToast();
 
   const handleCopy = () => {
     navigator.clipboard.writeText(coupon.code);
+    showToast('코드가 클립보드에 복사되었습니다');
   };
 
   return (
@@ -33,7 +23,7 @@ export const CouponItem = ({ coupon }: Props) => {
           <td className={styles.centerText}>
             <img className={styles.gameImg} src={iconUrl} alt={coupon.korName} />
           </td>
-          <td>{coupon.server}</td>
+          <td className={styles.centerText}>{coupon.server}</td>
           <td>
             <div className={styles.codeRow}>
               <span className={styles.codeBox} onClick={handleCopy}>{coupon.code}</span>
@@ -49,17 +39,13 @@ export const CouponItem = ({ coupon }: Props) => {
             </div>
             <div className={styles.codeDescription}>{coupon.description}</div>
           </td>
-          <td className={styles.rewardCell}>
-            {(coupon.rewards || []).map((reward, index) => (
-              <div key={index} className={styles.rewardItem}>
-                {reward.item} * {reward.amount}
-              </div>
-            ))}
+          <td>
+            <RewardList rewards={coupon.rewards || []} />
           </td>
-          <td className={getExpirationClass(coupon.expiredAt)}>
-            <div>등록: {formatRelativeTime(coupon.createdAt)}</div>
-            <div>마감: {formatDate(coupon.expiredAt)}</div>
+          <td className={styles.centerText}>
+            <ExpiryBadge expiredAt={coupon.expiredAt} />
           </td>
+          <td className={styles.centerText}>{formatRelativeTime(coupon.createdAt)}</td>
         </tr>
   );
 };

@@ -22,7 +22,11 @@
   text-align: center;
 }
 
-td:first-child {
+.table th.centerHeader {
+  text-align: center;
+}
+
+.table td:first-child {
   padding: 2px 2px;
 }
 
@@ -40,30 +44,12 @@ td:first-child {
 }
 
 .colGame { width: 50px; }
-.colServer { width: 60px; }
+.colServer { width: 44px; }
 .colCode { width: 180px; }
 .colRewards { min-width: 100px; }
-.colDuration { width: 124px; }
-.colDday { width: 40px; }
-.colLink { width: 40px; }
-
-.sortableHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  user-select: none;
-}
-
-.sortLabel {
-  font-size: 12px;
-  font-weight: 400;
-  margin-left: 2px;
-}
-
-.sortRight {
-  display: flex;
-  align-items: center;
-  gap: 0px;
-  color: var(--color-text-secondary, #888);
+.colRemaining { width: 72px; }
+.colRegistered { width: 68px; }
+.colAction {
+  width: 80px;
+  text-align: center;
 }

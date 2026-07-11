@@ -15,18 +15,6 @@
   text-align: center;
 }
 
-.rewardItem {
-  word-break: keep-all;
-}
-
-.expired {
-  background-color: #fee2e2;
-}
-
-.expiringSoon {
-  background-color: #fef9c3;
-}
-
 .actionCell {
   text-align: center;
   white-space: nowrap;
@@ -109,7 +97,7 @@
   background-color: #f3f4f6;
   border-radius: 6px;
   cursor: pointer;
-  user-select: all;
+  user-select: none;
   font-family: inherit;
   font-weight: 500;
   transition: background-color 0.15s;

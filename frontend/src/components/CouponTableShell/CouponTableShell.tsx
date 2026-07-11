@@ -1,0 +1,45 @@
+import type { ReactNode } from 'react';
+import styles from './CouponTableShell.module.css'
+import Pagination from '@/components/Pagination/Pagination';
+
+interface CouponTableShellProps {
+  hasActionColumn?: boolean;
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  children: ReactNode;
+}
+
+function CouponTableShell({ hasActionColumn = false, currentPage, totalPages, onPageChange, children }: CouponTableShellProps) {
+  return (
+    <>
+      <table className={styles.table}>
+        <colgroup>
+          <col className={styles.colGame} />
+          <col className={styles.colServer} />
+          <col className={styles.colCode} />
+          <col className={styles.colRewards} />
+          <col className={styles.colRemaining} />
+          <col className={styles.colRegistered} />
+          {hasActionColumn && <col className={styles.colAction} />}
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th className={styles.centerHeader}>게임</th>
+            <th className={styles.centerHeader}>서버</th>
+            <th>코드</th>
+            <th>보상</th>
+            <th className={styles.centerHeader}>기한</th>
+            <th className={styles.centerHeader}>등록</th>
+            {hasActionColumn && <th></th>}
+          </tr>
+        </thead>
+        <tbody>{children}</tbody>
+      </table>
+      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
+    </>
+  );
+}
+
+export default CouponTableShell

@@ -1,11 +1,16 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GameListContainer from '@/components/GameListContainer/GameListContainer'
 import AdminCouponTable from '@/components/AdminCouponTable/AdminCouponTable'
+import CouponFilterBar from '@/components/CouponFilterBar/CouponFilterBar'
 import { useToggleGame } from '@/hooks/useToggleGame'
+import type { SortMode, StatusFilter } from '@/utils/couponFilters';
 
 function HomePage() {
   const navigate = useNavigate();
   const { selectedGameIds, toggle } = useToggleGame();
+  const [sortMode, setSortMode] = useState<SortMode>('latest');
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
 
   const handleReportClick = () => {
     navigate('/admin/coupon-reports');
@@ -26,7 +31,13 @@ function HomePage() {
         </button>
       </div>
       <GameListContainer selectedGameIds={selectedGameIds} onToggle={toggle} />
-      <AdminCouponTable selectedGameIds={selectedGameIds} />
+      <CouponFilterBar
+        statusFilter={statusFilter}
+        onStatusFilterChange={setStatusFilter}
+        sortMode={sortMode}
+        onSortModeChange={setSortMode}
+      />
+      <AdminCouponTable selectedGameIds={selectedGameIds} sortMode={sortMode} statusFilter={statusFilter} />
     </>
   )
 }

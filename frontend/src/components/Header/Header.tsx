@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { useAuth } from '@/hooks/useAuth';
+import styles from './Header.module.css'
 
 function Header() {
   const { user, loading, login, logout } = useAuth();
@@ -12,34 +13,17 @@ function Header() {
   };
 
   return (
-    <header style={{
-      padding: '4px 16px',
-      borderBottom: '1px solid #222',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    }}>
-      <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <header className={styles.header}>
+      <Link to="/" className={styles.logo}>
         <h2>리딤이</h2>
       </Link>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <div className={styles.userArea}>
         {loading ? null : user ? (
           <>
-            <span style={{ fontSize: '14px' }}>
+            <span className={styles.userName}>
               {user.nickname || user.email}
             </span>
-            <button
-              onClick={logout}
-              style={{
-                padding: '6px 12px',
-                fontSize: '13px',
-                cursor: 'pointer',
-                border: '1px solid #555',
-                borderRadius: '4px',
-                background: 'transparent',
-                color: 'inherit',
-              }}
-            >
+            <button onClick={logout} className={styles.logoutBtn}>
               로그아웃
             </button>
           </>
