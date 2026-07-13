@@ -1,70 +1,59 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin: 0px auto;
+  gap: 16px;
 }
 
 .field {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  animation: fadeIn 0.4s ease-out;
 }
 
 .label {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #333;
-  margin-left: 4px;
 }
 
 .input {
-  padding: 14px 16px;
+  padding: 12px 14px;
   border: 1px solid #e1e1e1;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   background-color: #f9f9f9;
-  transition: all 0.2s ease;
   outline: none;
-  margin-bottom: 12px;
 }
 
 .input:focus {
   border-color: #222;
   background-color: #fff;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 
 .textarea {
-  padding: 14px 16px;
+  padding: 12px 14px;
   border: 1px solid #e1e1e1;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   background-color: #f9f9f9;
-  transition: all 0.2s ease;
-  outline: none;
-  margin-bottom: 12px;
+  min-height: 140px;
   resize: vertical;
-  min-height: 160px;
   font-family: inherit;
-  line-height: 1.5;
+  outline: none;
 }
 
 .textarea:focus {
   border-color: #222;
   background-color: #fff;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 
 .submitBtn {
-  margin-top: 10px;
-  padding: 16px;
+  padding: 14px;
   background-color: #222;
   color: #fff;
   border: none;
   border-radius: 10px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -74,17 +63,13 @@
   background-color: #444;
 }
 
-.submitBtn:active {
-  transform: scale(0.98);
+.submitBtn:disabled {
+  background-color: #999;
+  cursor: not-allowed;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.loginNotice {
+  text-align: center;
+  color: var(--color-text-gray);
+  padding: 24px 0;
 }

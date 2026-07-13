@@ -13,6 +13,7 @@ public class AdminCouponService {
 
     private final CouponRepository couponRepository;
     private final GameRepository gameRepository;
+    private final CouponIssueReportRepository couponIssueReportRepository;
     private final ObjectMapper objectMapper;
 
     @Transactional
@@ -51,6 +52,7 @@ public class AdminCouponService {
         if (!couponRepository.existsById(id)) {
             throw new IllegalArgumentException("존재하지 않는 쿠폰 ID입니다: " + id);
         }
+        couponIssueReportRepository.deleteByCouponId(id);
         couponRepository.deleteById(id);
     }
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './AdminCouponItem.module.css';
 import type { Coupon, RewardItem, Game } from '@/types';
 import { useAuth } from '@/hooks/useAuth';
@@ -13,12 +14,14 @@ interface Props {
   coupon: Coupon;
   games: Game[];
   servers: string[];
+  reportCount: number;
   onChanged: () => void;
 }
 
-function AdminCouponItem({ coupon, games, servers, onChanged }: Props) {
+function AdminCouponItem({ coupon, games, servers, reportCount, onChanged }: Props) {
   const { token } = useAuth();
   const { showToast } = useToast();
+  const navigate = useNavigate();
   const [editing, setEditing] = useState(false);
 
   const [gameId, setGameId] = useState(coupon.gameId);
@@ -56,16 +59,23 @@ function AdminCouponItem({ coupon, games, servers, onChanged }: Props) {
     setRewards(updated);
   };
 
+  const addReward = () => setRewards([...rewards, { item: '', amount: 0 }]);
+
+  const removeReward = (index: number) => {
+    setRewards(rewards.filter((_, i) => i !== index));
+  };
+
   const handleSave = async () => {
     if (!token) return;
     try {
+      const filteredRewards = rewards.filter((r) => r.item.trim() !== '');
       await updateCoupon(token, coupon.id, {
         gameId,
         korName: selectedGame?.korName ?? coupon.korName,
         code,
         description,
         server,
-        rewards,
+        rewards: filteredRewards,
         expiredAt: expiredAt || null,
         quickUrl: quickUrl || null,
       });
@@ -144,13 +154,16 @@ function AdminCouponItem({ coupon, games, servers, onChanged }: Props) {
             <div key={i} className={styles.rewardEditRow}>
               <input className={styles.editInput} value={reward.item} onChange={(e) => handleRewardChange(i, 'item', e.target.value)} placeholder="아이템" />
               <input className={styles.editInputSmall} type="number" value={reward.amount} onChange={(e) => handleRewardChange(i, 'amount', e.target.value)} />
+              <button className={styles.cancelBtn} type="button" onClick={() => removeReward(i)}>−</button>
             </div>
           ))}
+          <button className={styles.editBtn} type="button" onClick={addReward}>+ 보상</button>
         </td>
         <td>
           <input className={styles.editInput} type="date" value={expiredAt} onChange={(e) => setExpiredAt(e.target.value)} />
         </td>
         <td className={styles.centerText}>{formatRelativeTime(coupon.createdAt)}</td>
+        <td className={styles.centerText}>-</td>
         <td className={styles.actionCell}>
           <button className={styles.saveBtn} onClick={handleSave}>저장</button>
           <button className={styles.cancelBtn} onClick={handleCancel}>취소</button>
@@ -187,6 +200,20 @@ function AdminCouponItem({ coupon, games, servers, onChanged }: Props) {
         <ExpiryBadge expiredAt={coupon.expiredAt} />
       </td>
       <td className={styles.centerText}>{formatRelativeTime(coupon.createdAt)}</td>
+      <td className={styles.centerText}>
+        {reportCount > 0 ? (
+          <button
+            type="button"
+            className={styles.reportCountBtn}
+            onClick={() => navigate(`/admin/coupon-issue-reports?couponId=${coupon.id}`)}
+            title="쿠폰 신고 보기"
+          >
+            {reportCount}
+          </button>
+        ) : (
+          <span className={styles.reportCountZero}>-</span>
+        )}
+      </td>
       <td className={styles.actionCell}>
         <button className={styles.editBtn} onClick={() => setEditing(true)}>수정</button>
         <button className={styles.deleteBtn} onClick={handleDelete}>삭제</button>

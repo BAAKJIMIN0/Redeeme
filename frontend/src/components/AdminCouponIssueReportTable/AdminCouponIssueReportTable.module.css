@@ -1,0 +1,81 @@
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.table th,
+.table td {
+  padding: 6px 8px;
+  border-right: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.table th {
+  text-align: left;
+}
+
+.table th:last-child,
+.table td:last-child {
+  border-right: none;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.colGame { width: 100px; }
+.colServer { width: 60px; }
+.colCode { width: 140px; }
+.colReason { min-width: 160px; }
+.colDuration { width: 90px; }
+.colAction {
+  width: 70px;
+  text-align: center;
+}
+
+.reasonCell {
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.reasonCell:hover {
+  color: #000;
+}
+
+.detailRow td {
+  padding: 12px 14px;
+  background-color: #fafafa;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #444;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.actionCell {
+  text-align: center;
+}
+
+.deleteBtn {
+  border: none;
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.deleteBtn:hover {
+  background-color: #fecaca;
+}
+
+.emptyRow {
+  text-align: center;
+  color: var(--color-text-gray);
+  padding: 24px 0;
+}

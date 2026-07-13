@@ -51,3 +51,19 @@
 .linkIcon:hover {
   color: #3b82f6;
 }
+
+.reportBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #dc2626;
+  transition: color 0.15s;
+}
+
+.reportBtn:hover {
+  color: #991b1b;
+}

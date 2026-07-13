@@ -44,6 +44,28 @@ export const deleteReport = async (token: string, id: number) => {
   return response.data;
 };
 
+export const getCouponIssueReports = async (token: string, couponId?: number) => {
+  const response = await axios.get(`${BASE_URL}/coupon-issue-reports`, {
+    headers: { Authorization: `Bearer ${token}` },
+    params: couponId ? { couponId } : undefined,
+  });
+  return response.data;
+};
+
+export const getCouponIssueReportCounts = async (token: string) => {
+  const response = await axios.get(`${BASE_URL}/coupon-issue-reports/counts`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
+
+export const deleteCouponIssueReport = async (token: string, id: number) => {
+  const response = await axios.delete(`${BASE_URL}/coupon-issue-reports/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
+
 export const getInquiries = async (token: string) => {
   const response = await axios.get(`${BASE_URL}/inquiries`, {
     headers: { Authorization: `Bearer ${token}` },

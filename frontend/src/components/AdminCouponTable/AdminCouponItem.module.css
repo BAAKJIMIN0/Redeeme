@@ -153,6 +153,25 @@
   color: #2563eb;
 }
 
+.reportCountBtn {
+  border: none;
+  background-color: #fee2e2;
+  color: #991b1b;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.reportCountBtn:hover {
+  background-color: #fecaca;
+}
+
+.reportCountZero {
+  color: var(--color-text-gray);
+}
+
 .urlInput {
   width: 100%;
   padding: 2px 4px;

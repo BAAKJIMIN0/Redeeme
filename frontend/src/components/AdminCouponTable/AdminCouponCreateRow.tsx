@@ -53,13 +53,14 @@ function AdminCouponCreateRow({ games, onCreated, onCancel }: Props) {
   const handleSave = async () => {
     if (!token || !gameId) return;
     try {
+      const filteredRewards = rewards.filter((r) => r.item.trim() !== '');
       await createCoupon(token, {
         gameId,
         korName: selectedGame?.korName ?? '',
         code,
         description,
         server,
-        rewards,
+        rewards: filteredRewards,
         expiredAt: expiredAt || null,
         quickUrl: quickUrl || null,
       });
@@ -120,6 +121,7 @@ function AdminCouponCreateRow({ games, onCreated, onCancel }: Props) {
       <td>
         <input className={styles.editInput} type="date" value={expiredAt} onChange={(e) => setExpiredAt(e.target.value)} />
       </td>
+      <td className={styles.centerText}>-</td>
       <td className={styles.centerText}>-</td>
       <td className={styles.actionCell}>
         <button className={styles.saveBtn} onClick={handleSave}>저장</button>

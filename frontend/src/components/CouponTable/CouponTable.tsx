@@ -20,7 +20,7 @@ function CouponTable({ selectedGameIds, sortMode, statusFilter }: CouponTablePro
   });
 
   return (
-    <CouponTableShell currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}>
+    <CouponTableShell hasReportColumn currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}>
       {pagedCoupons.map((coupon) => (
         <CouponItem key={coupon.id} coupon={coupon} />
       ))}

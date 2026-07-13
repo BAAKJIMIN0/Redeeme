@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import styles from './CouponItem.module.css'
 import ExpiryBadge from '@/components/ExpiryBadge/ExpiryBadge';
 import RewardList from '@/components/RewardList/RewardList';
+import CouponIssueReportModal from '@/components/CouponIssueReportModal/CouponIssueReportModal';
 import type { Coupon } from '@/types';
 import { formatRelativeTime } from '@/utils/formatRelativeTime';
 import { useToast } from '@/hooks/useToast';
@@ -12,6 +14,7 @@ interface Props {
 export const CouponItem = ({ coupon }: Props) => {
   const iconUrl = '/gameIcons/gameIcon_' + coupon.slug + '.png';
   const { showToast } = useToast();
+  const [reporting, setReporting] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(coupon.code);
@@ -19,7 +22,8 @@ export const CouponItem = ({ coupon }: Props) => {
   };
 
   return (
-    <tr>
+    <>
+      <tr>
           <td className={styles.centerText}>
             <img className={styles.gameImg} src={iconUrl} alt={coupon.korName} />
           </td>
@@ -46,6 +50,23 @@ export const CouponItem = ({ coupon }: Props) => {
             <ExpiryBadge expiredAt={coupon.expiredAt} />
           </td>
           <td className={styles.centerText}>{formatRelativeTime(coupon.createdAt)}</td>
+          <td className={styles.centerText}>
+            <button
+              type="button"
+              className={styles.reportBtn}
+              onClick={() => setReporting(true)}
+              title="쿠폰 신고하기"
+              aria-label="쿠폰 신고하기"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2 1 21h22L12 2Zm0 6a1.25 1.25 0 0 1 1.25 1.25v5a1.25 1.25 0 0 1-2.5 0v-5A1.25 1.25 0 0 1 12 8Zm0 9.75a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Z" />
+              </svg>
+            </button>
+          </td>
         </tr>
+      {reporting && (
+        <CouponIssueReportModal couponId={coupon.id} onClose={() => setReporting(false)} />
+      )}
+    </>
   );
 };

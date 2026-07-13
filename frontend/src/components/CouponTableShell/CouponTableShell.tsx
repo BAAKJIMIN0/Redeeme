@@ -4,13 +4,14 @@ import Pagination from '@/components/Pagination/Pagination';
 
 interface CouponTableShellProps {
   hasActionColumn?: boolean;
+  hasReportColumn?: boolean;
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
   children: ReactNode;
 }
 
-function CouponTableShell({ hasActionColumn = false, currentPage, totalPages, onPageChange, children }: CouponTableShellProps) {
+function CouponTableShell({ hasActionColumn = false, hasReportColumn = false, currentPage, totalPages, onPageChange, children }: CouponTableShellProps) {
   return (
     <>
       <table className={styles.table}>
@@ -21,6 +22,7 @@ function CouponTableShell({ hasActionColumn = false, currentPage, totalPages, on
           <col className={styles.colRewards} />
           <col className={styles.colRemaining} />
           <col className={styles.colRegistered} />
+          {hasReportColumn && <col className={styles.colReport} />}
           {hasActionColumn && <col className={styles.colAction} />}
         </colgroup>
 
@@ -32,6 +34,7 @@ function CouponTableShell({ hasActionColumn = false, currentPage, totalPages, on
             <th>보상</th>
             <th className={styles.centerHeader}>기한</th>
             <th className={styles.centerHeader}>등록</th>
+            {hasReportColumn && <th className={styles.centerHeader}>신고</th>}
             {hasActionColumn && <th></th>}
           </tr>
         </thead>
