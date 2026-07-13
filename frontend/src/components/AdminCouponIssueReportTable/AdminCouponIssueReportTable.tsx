@@ -4,7 +4,10 @@ import styles from './AdminCouponIssueReportTable.module.css';
 import { useAuth } from '@/hooks/useAuth';
 import { getCouponIssueReports, deleteCouponIssueReport } from '@/api/admin';
 import { formatRelativeTime } from '@/utils/formatRelativeTime';
+import Pagination from '@/components/Pagination/Pagination';
 import type { CouponIssueReport } from '@/types';
+
+const PAGE_SIZE = 35;
 
 function AdminCouponIssueReportTable() {
   const { token } = useAuth();
@@ -15,6 +18,7 @@ function AdminCouponIssueReportTable() {
   const [reports, setReports] = useState<CouponIssueReport[]>([]);
   const [refreshKey, setRefreshKey] = useState(0);
   const [openId, setOpenId] = useState<number | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     if (!token) return;
@@ -27,7 +31,17 @@ function AdminCouponIssueReportTable() {
     return () => { cancelled = true; };
   }, [token, couponId, refreshKey]);
 
+  const [prevCouponId, setPrevCouponId] = useState(couponId);
+  if (couponId !== prevCouponId) {
+    setPrevCouponId(couponId);
+    setCurrentPage(1);
+  }
+
   const refetch = () => setRefreshKey((k) => k + 1);
+
+  const totalPages = Math.ceil(reports.length / PAGE_SIZE);
+  const safePage = Math.min(currentPage, totalPages || 1);
+  const pagedReports = reports.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
   const toggleOpen = (id: number) => {
     setOpenId(openId === id ? null : id);
@@ -71,7 +85,7 @@ function AdminCouponIssueReportTable() {
               <td colSpan={6} className={styles.emptyRow}>신고가 없습니다.</td>
             </tr>
           ) : (
-            reports.map((report) => (
+            pagedReports.map((report) => (
               <>
                 <tr key={report.id}>
                   <td>{report.korName}</td>
@@ -95,6 +109,7 @@ function AdminCouponIssueReportTable() {
           )}
         </tbody>
       </table>
+      <Pagination currentPage={safePage} totalPages={totalPages} onPageChange={setCurrentPage} />
     </>
   );
 }

@@ -1,4 +1,5 @@
 .form {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -8,6 +9,10 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.growField {
+  flex: 1;
 }
 
 .label {
@@ -26,6 +31,7 @@
 }
 
 .textarea {
+  flex: 1;
   padding: 12px 14px;
   border: 1px solid #e1e1e1;
   border-radius: 10px;

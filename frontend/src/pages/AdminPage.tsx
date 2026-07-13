@@ -27,6 +27,9 @@ function HomePage() {
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '12px', gap: '8px' }}>
+        <button className="actionBtn" onClick={() => navigate('/admin')}>
+          리딤코드 보기
+        </button>
         <button className="actionBtn" onClick={handleReportClick}>
           쿠폰 제보보기
         </button>

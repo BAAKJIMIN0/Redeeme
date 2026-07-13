@@ -68,7 +68,7 @@ function InquiryModal({ onClose }: Props) {
           />
         </div>
 
-        <div className={styles.field}>
+        <div className={`${styles.field} ${styles.growField}`}>
           <label className={styles.label}>내용</label>
           <textarea
             className={styles.textarea}

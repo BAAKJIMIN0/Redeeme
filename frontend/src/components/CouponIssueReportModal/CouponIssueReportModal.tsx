@@ -73,7 +73,7 @@ function CouponIssueReportModal({ couponId, onClose }: Props) {
           ))}
         </div>
 
-        <div className={styles.field}>
+        <div className={`${styles.field} ${styles.growField}`}>
           <label className={styles.label}>
             상세 내용{reason === '기타' ? '' : '(선택)'}
           </label>
