@@ -79,3 +79,45 @@ export const deleteInquiry = async (token: string, id: number) => {
   });
   return response.data;
 };
+
+export const createEvent = async (token: string, data: Record<string, unknown>) => {
+  const response = await axios.post(`${BASE_URL}/events`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
+
+export const updateEvent = async (token: string, id: number, data: Record<string, unknown>) => {
+  const response = await axios.put(`${BASE_URL}/events/${id}`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
+
+export const deleteEvent = async (token: string, id: number) => {
+  const response = await axios.delete(`${BASE_URL}/events/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
+
+export const getEventReports = async (token: string) => {
+  const response = await axios.get(`${BASE_URL}/event-reports`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
+
+export const acceptEventReport = async (token: string, id: number) => {
+  const response = await axios.post(`${BASE_URL}/event-reports/${id}/accept`, null, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
+
+export const deleteEventReport = async (token: string, id: number) => {
+  const response = await axios.delete(`${BASE_URL}/event-reports/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};

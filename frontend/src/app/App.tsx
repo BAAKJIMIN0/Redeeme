@@ -11,6 +11,11 @@ import CouponCreatePage from '../pages/CouponCreatePage'
 import AdminReportsPage from '../pages/AdminReportsPage'
 import AdminInquiriesPage from '../pages/AdminInquiriesPage'
 import AdminCouponIssueReportsPage from '../pages/AdminCouponIssueReportsPage'
+import SchedulePage from '../pages/SchedulePage'
+import AdminEventsPage from '../pages/AdminEventsPage'
+import EventReportPage from '../pages/EventReportPage'
+import AdminEventReportsPage from '../pages/AdminEventReportsPage'
+import InquiryPage from '../pages/InquiryPage'
 
 const GOOGLE_CLIENT_ID = '815467473744-7s3bfsjcil6jfnp53vsotj8vm27kean1.apps.googleusercontent.com';
 
@@ -24,12 +29,17 @@ function App() {
               <Route element={<Layout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/coupon-report" element={<CouponReportPage />} />
+                <Route path="/event-report" element={<EventReportPage />} />
+                <Route path="/inquiry" element={<InquiryPage />} />
+                <Route path="/schedule" element={<SchedulePage />} />
                 <Route element={<ProtectedRoute />}>
                   <Route path="/admin" element={<AdminPage />} />
                   <Route path="/admin/coupon-create" element={<CouponCreatePage />} />
                   <Route path="/admin/coupon-reports" element={<AdminReportsPage />} />
                   <Route path="/admin/coupon-issue-reports" element={<AdminCouponIssueReportsPage />} />
                   <Route path="/admin/inquiries" element={<AdminInquiriesPage />} />
+                  <Route path="/admin/events" element={<AdminEventsPage />} />
+                  <Route path="/admin/event-reports" element={<AdminEventReportsPage />} />
                 </Route>
               </Route>
             </Routes>

@@ -1,18 +1,22 @@
 .form {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+.row .field {
+  flex: 1;
 }
 
 .field {
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.growField {
-  flex: 1;
 }
 
 .label {
@@ -35,25 +39,48 @@
   background-color: #fff;
 }
 
-.textarea {
+.gameGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timeInputs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timeInput {
   flex: 1;
-  padding: 12px 14px;
+  min-width: 0;
+  padding: 12px 0;
   border: 1px solid #e1e1e1;
   border-radius: 10px;
   font-size: 0.95rem;
   background-color: #f9f9f9;
-  min-height: 80px;
-  resize: vertical;
-  font-family: inherit;
   outline: none;
+  text-align: center;
 }
 
-.textarea:focus {
+.timeInput:focus {
   border-color: #222;
   background-color: #fff;
 }
 
+.timeColon {
+  font-weight: 700;
+  color: #333;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
 .submitBtn {
+  flex: 1;
   padding: 14px;
   background-color: #222;
   color: #fff;
@@ -74,8 +101,16 @@
   cursor: not-allowed;
 }
 
-.loginNotice {
-  text-align: center;
-  color: var(--color-text-gray);
-  padding: 24px 0;
+.cancelBtn {
+  padding: 14px 20px;
+  background: transparent;
+  color: inherit;
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.cancelBtn:hover {
+  background: rgba(0, 0, 0, 0.04);
 }

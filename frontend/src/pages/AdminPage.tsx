@@ -16,6 +16,10 @@ function HomePage() {
     navigate('/admin/coupon-reports');
   };
 
+  const handleEventReportClick = () => {
+    navigate('/admin/event-reports');
+  };
+
   const handleIssueReportClick = () => {
     navigate('/admin/coupon-issue-reports');
   };
@@ -30,11 +34,17 @@ function HomePage() {
         <button className="actionBtn" onClick={() => navigate('/admin')}>
           리딤코드 보기
         </button>
+        <button className="actionBtn" onClick={() => navigate('/admin/events')}>
+          공방 일정 관리
+        </button>
         <button className="actionBtn" onClick={handleReportClick}>
           쿠폰 제보보기
         </button>
         <button className="actionBtn" onClick={handleIssueReportClick}>
           쿠폰 신고보기
+        </button>
+        <button className="actionBtn" onClick={handleEventReportClick}>
+          공방 제보보기
         </button>
         <button className="actionBtn" onClick={handleInquiryClick}>
           문의 건의보기

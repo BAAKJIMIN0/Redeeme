@@ -1,0 +1,121 @@
+.calendar {
+  width: 100%;
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.weekdayRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.weekday {
+  padding: 10px 0;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-gray);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.cell {
+  min-height: 84px;
+  padding: 8px 6px;
+  border-right: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cell:nth-child(7n) {
+  border-right: none;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.clickable:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.past {
+  opacity: 0.4;
+}
+
+.hasMatch {
+  background: rgba(46, 204, 113, 0.1);
+}
+
+.dayNumber {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.today .dayNumber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #2ecc71;
+  color: #fff;
+  font-weight: 700;
+}
+
+.iconRow {
+  display: flex;
+  align-items: center;
+}
+
+.dayIcon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-white);
+  box-shadow: 0 0 0 1px var(--color-border-light);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.dayIcon:hover {
+  transform: scale(1.15);
+}
+
+.dayIcon:not(:first-child) {
+  margin-left: -8px;
+}
+
+.iconMatch {
+  box-shadow: 0 0 0 2px #2ecc71;
+}
+
+.iconDim {
+  opacity: 0.3;
+}
+
+.overflowBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-gray);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  margin-left: -8px;
+  border: 2px solid var(--color-white);
+}

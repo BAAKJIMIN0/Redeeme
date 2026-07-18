@@ -6,9 +6,10 @@ interface Props {
   games: Game[];
   selectedGameId: number;
   onChange: (gameId: number) => void;
+  size?: number;
 }
 
-function GameIconPicker({ games, selectedGameId, onChange }: Props) {
+function GameIconPicker({ games, selectedGameId, onChange, size }: Props) {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +28,7 @@ function GameIconPicker({ games, selectedGameId, onChange }: Props) {
   }, [open]);
 
   return (
-    <div className={styles.wrapper} ref={wrapperRef}>
+    <div className={styles.wrapper} ref={wrapperRef} style={size ? { width: size, height: size } : undefined}>
       {selectedGame && (
         <img
           className={styles.currentIcon}

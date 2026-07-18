@@ -1,0 +1,148 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px auto;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  margin-left: 4px;
+}
+
+.input {
+  padding: 14px 16px;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  transition: all 0.2s ease;
+  outline: none;
+  margin-bottom: 12px;
+}
+
+.input:focus {
+  border-color: #222;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.submitBtn {
+  margin-top: 10px;
+  padding: 16px;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submitBtn:hover {
+  background-color: #444;
+}
+
+.submitBtn:active {
+  transform: scale(0.98);
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.row .field {
+  flex: 1;
+}
+
+.timeInputs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.timeInput {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 0;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  outline: none;
+  text-align: center;
+}
+
+.timeInput:focus {
+  border-color: #222;
+  background-color: #fff;
+}
+
+.timeColon {
+  font-weight: 700;
+  color: #333;
+}
+
+.gameIconList {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.customBtn {
+  width: 60px;
+  height: 60px;
+  border: 2px dashed var(--color-border-light);
+  border-radius: 10px;
+  cursor: pointer;
+  background: #f9f9f9;
+  font-size: 12px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, transform 0.1s;
+}
+
+.customBtn:hover {
+  border-color: #aaa;
+}
+
+.customBtn:active {
+  transform: scale(0.95);
+}
+
+.customBtn.selected {
+  border-color: #2ecc71;
+  border-style: solid;
+  border-width: 3px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
