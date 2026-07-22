@@ -1,0 +1,42 @@
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-bottom: 48px;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.updatedAt {
+  font-size: 0.85rem;
+  color: var(--color-text-gray);
+  margin-bottom: 24px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.section p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.section ul {
+  padding-left: 20px;
+}
+
+.section li {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}

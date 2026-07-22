@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_BASE_URL } from '@/api/config';
 import type { Coupon, RewardItem } from '@/types';
 
 interface RawCoupon {
@@ -17,7 +18,7 @@ interface RawCoupon {
 }
 
 export const getCoupons = async (selectedGameIds?: number[]): Promise<Coupon[]> => {
-  const response = await axios.get<RawCoupon[]>('http://localhost:8080/api/coupons', {
+  const response = await axios.get<RawCoupon[]>(`${API_BASE_URL}/api/coupons`, {
     params: {
       gameIds: selectedGameIds?.join(',')
     }

@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { API_BASE_URL } from '@/api/config';
 
-const BASE_URL = 'http://localhost:8080/api/admin';
+const BASE_URL = `${API_BASE_URL}/api/admin`;
 
 export const updateCoupon = async (token: string, id: number, data: Record<string, unknown>) => {
   const response = await axios.put(`${BASE_URL}/coupons/${id}`, data, {

@@ -35,7 +35,7 @@ function HomePage() {
           리딤코드 보기
         </button>
         <button className="actionBtn" onClick={() => navigate('/admin/events')}>
-          공방 일정 관리
+          공방 일정 보기
         </button>
         <button className="actionBtn" onClick={handleReportClick}>
           쿠폰 제보보기

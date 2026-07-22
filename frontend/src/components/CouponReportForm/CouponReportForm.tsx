@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { API_BASE_URL } from '@/api/config';
 import { useGames } from '@/hooks/useGames';
 import { GameIcon } from '@/components/GameIcon/GameIcon';
 import { useAuth } from '@/hooks/useAuth';
@@ -92,7 +93,7 @@ function CouponReportForm() {
 
   try {
       await axios.post(
-        'http://localhost:8080/api/coupon-reports',
+        `${API_BASE_URL}/api/coupon-reports`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );

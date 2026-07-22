@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_BASE_URL } from '@/api/config';
 
 interface UserInfo {
   id: number;
@@ -13,12 +14,12 @@ interface LoginResponse {
 }
 
 export const postGoogleLogin = async (idToken: string): Promise<LoginResponse> => {
-  const response = await axios.post<LoginResponse>('http://localhost:8080/api/auth/google', { idToken });
+  const response = await axios.post<LoginResponse>(`${API_BASE_URL}/api/auth/google`, { idToken });
   return response.data;
 };
 
 export const getMe = async (token: string): Promise<UserInfo> => {
-  const response = await axios.get<UserInfo>('http://localhost:8080/api/auth/me', {
+  const response = await axios.get<UserInfo>(`${API_BASE_URL}/api/auth/me`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response.data;

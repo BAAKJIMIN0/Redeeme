@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { API_BASE_URL } from '@/api/config';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/useToast';
 import styles from './InquiryForm.module.css';
@@ -26,7 +27,7 @@ function InquiryForm() {
 
     try {
       await axios.post(
-        'http://localhost:8080/api/inquiries',
+        `${API_BASE_URL}/api/inquiries`,
         { title, content },
         { headers: { Authorization: `Bearer ${token}` } }
       );

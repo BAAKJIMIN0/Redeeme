@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { API_BASE_URL } from '@/api/config';
 
-const BASE_URL = 'http://localhost:8080/api';
+const BASE_URL = `${API_BASE_URL}/api`;
 
 export const createCouponIssueReport = async (
   token: string,

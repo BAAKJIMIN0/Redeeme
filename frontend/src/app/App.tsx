@@ -16,6 +16,8 @@ import AdminEventsPage from '../pages/AdminEventsPage'
 import EventReportPage from '../pages/EventReportPage'
 import AdminEventReportsPage from '../pages/AdminEventReportsPage'
 import InquiryPage from '../pages/InquiryPage'
+import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
+import TermsPage from '../pages/TermsPage'
 
 const GOOGLE_CLIENT_ID = '815467473744-7s3bfsjcil6jfnp53vsotj8vm27kean1.apps.googleusercontent.com';
 
@@ -31,6 +33,8 @@ function App() {
                 <Route path="/coupon-report" element={<CouponReportPage />} />
                 <Route path="/event-report" element={<EventReportPage />} />
                 <Route path="/inquiry" element={<InquiryPage />} />
+                <Route path="/privacy" element={<PrivacyPolicyPage />} />
+                <Route path="/terms" element={<TermsPage />} />
                 <Route path="/schedule" element={<SchedulePage />} />
                 <Route element={<ProtectedRoute />}>
                   <Route path="/admin" element={<AdminPage />} />
