@@ -1,0 +1,13 @@
+.git
+.github
+.vscode
+.claude
+docs
+
+backend/target
+backend/*.jar
+
+frontend/node_modules
+frontend/dist
+
+**/*.log

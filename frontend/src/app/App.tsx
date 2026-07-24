@@ -19,7 +19,7 @@ import InquiryPage from '../pages/InquiryPage'
 import PrivacyPolicyPage from '../pages/PrivacyPolicyPage'
 import TermsPage from '../pages/TermsPage'
 
-const GOOGLE_CLIENT_ID = '815467473744-7s3bfsjcil6jfnp53vsotj8vm27kean1.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 function App() {
   return (
