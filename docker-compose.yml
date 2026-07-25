@@ -21,6 +21,9 @@ services:
 
   db:
     image: mysql:8.0
+    ports:
+      # 서버 로컬에서만 접근 가능 (외부 노출 안 됨). 로컬 PC에서 보려면 SSH 터널 사용.
+      - "127.0.0.1:3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: redeeme
