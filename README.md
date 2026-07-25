@@ -13,10 +13,13 @@
 - 건의사항(문의) 등록
 - Google 소셜 로그인
 
-- 관리자 페이지
+### 관리자 페이지
+
 <img width="769" height="272" alt="Image" src="https://github.com/user-attachments/assets/dcfe42a3-aa59-4687-ad4c-64324d6e07c8" />
+
   - 쿠폰 생성 / 수정 / 삭제
-<img width="784" height="369" alt="Image" src="https://github.com/user-attachments/assets/d79a1d8d-286a-4700-b319-d2fcf8104b91" />
+<img width="784" height="326" alt="Image" src="https://github.com/user-attachments/assets/fee46cd8-a0ed-4d27-9265-a03c4eb5b55f" />
+
   - 제보된 쿠폰 검토(승인 · 반려)
   - 이벤트 일정 생성 / 수정 / 삭제
   - 제보된 이벤트 일정 검토
