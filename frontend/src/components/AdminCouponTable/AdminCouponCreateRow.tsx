@@ -15,7 +15,7 @@ function AdminCouponCreateRow({ games, onCreated, onCancel }: Props) {
   const { token } = useAuth();
 
   const [gameId, setGameId] = useState<number>(games[0]?.id ?? 0);
-  const [server, setServer] = useState('');
+  const [server, setServer] = useState(games[0]?.servers?.[0] ?? '');
   const [code, setCode] = useState('');
   const [description, setDescription] = useState('');
   const [rewards, setRewards] = useState<RewardItem[]>([{ item: '', amount: 0 }]);
