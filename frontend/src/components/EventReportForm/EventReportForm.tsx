@@ -37,7 +37,6 @@ function EventReportForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!token) return;
 
     const selectedGame = games.find(g => g.id.toString() === selectedGameId);
     const finalGameName = isCustom ? customGameName : selectedGame?.korName;

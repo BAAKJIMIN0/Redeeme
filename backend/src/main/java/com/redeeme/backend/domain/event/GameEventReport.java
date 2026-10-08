@@ -31,7 +31,7 @@ public class GameEventReport {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reporter_id", nullable = false)
+    @JoinColumn(name = "reporter_id")
     private User reporter;
 
     @ManyToOne(fetch = FetchType.LAZY)

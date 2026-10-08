@@ -68,9 +68,3 @@
   background-color: #f3a3a3;
   cursor: not-allowed;
 }
-
-.loginNotice {
-  text-align: center;
-  color: var(--color-text-gray);
-  padding: 24px 0;
-}

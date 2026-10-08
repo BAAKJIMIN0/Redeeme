@@ -23,7 +23,8 @@ public class CouponIssueReportService {
 
     @Transactional
     public void createReport(Long reporterId, CouponIssueReportRequest dto) {
-        User reporter = userRepository.findById(reporterId)
+        // 비로그인 제보 허용: reporterId가 없으면 reporter 없이 저장
+        User reporter = reporterId == null ? null : userRepository.findById(reporterId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다: " + reporterId));
         Coupon coupon = couponRepository.findById(dto.getCouponId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 쿠폰입니다: " + dto.getCouponId()));

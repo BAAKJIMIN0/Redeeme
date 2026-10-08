@@ -95,7 +95,7 @@ function CouponReportForm() {
       await axios.post(
         `${API_BASE_URL}/api/coupon-reports`,
         payload,
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: token ? { Authorization: `Bearer ${token}` } : undefined }
       );
 
       alert('쿠폰 제보가 완료되었습니다, 감사합니다!');

@@ -24,7 +24,8 @@ public class GameEventReportService {
 
     @Transactional
     public void createReport(Long reporterId, GameEventReportRequest dto) {
-        User reporter = userRepository.findById(reporterId)
+        // 비로그인 제보 허용: reporterId가 없으면 reporter 없이 저장
+        User reporter = reporterId == null ? null : userRepository.findById(reporterId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다: " + reporterId));
 
         GameEventReport report = new GameEventReport();

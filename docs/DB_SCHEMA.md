@@ -50,7 +50,7 @@
 | Column | Type | Null | Key | Default | Extra |
 |---|---|---|---|---|---|
 | id | bigint | NO | PRI | | auto_increment |
-| reporter_id | bigint | NO | MUL | | FK → users.id |
+| reporter_id | bigint | YES | MUL | | FK → users.id, 비로그인 제보는 NULL |
 | game_id | bigint | YES | MUL | | FK → games.id |
 | kor_name | varchar(255) | YES | | | |
 | server | varchar(255) | YES | | | |

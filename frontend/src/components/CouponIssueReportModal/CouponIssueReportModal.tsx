@@ -18,7 +18,7 @@ interface Props {
 }
 
 function CouponIssueReportModal({ couponId, onClose }: Props) {
-  const { token, user } = useAuth();
+  const { token } = useAuth();
   const { showToast } = useToast();
   const [reason, setReason] = useState(REASONS[0]);
   const [detail, setDetail] = useState('');
@@ -26,7 +26,6 @@ function CouponIssueReportModal({ couponId, onClose }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!token) return;
 
     if (reason === '기타' && !detail.trim()) {
       alert('기타 사유는 상세 내용을 입력해주세요.');
@@ -45,14 +44,6 @@ function CouponIssueReportModal({ couponId, onClose }: Props) {
       setSubmitting(false);
     }
   };
-
-  if (!user) {
-    return (
-      <Modal title="쿠폰 신고" onClose={onClose}>
-        <p className={styles.loginNotice}>쿠폰 신고는 로그인 후 이용할 수 있습니다.</p>
-      </Modal>
-    );
-  }
 
   return (
     <Modal title="쿠폰 신고" onClose={onClose}>

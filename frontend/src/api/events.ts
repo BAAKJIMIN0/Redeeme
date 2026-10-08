@@ -10,9 +10,9 @@ export const getEvents = async (from: string, to: string): Promise<GameEvent[]> 
   return response.data;
 };
 
-export const reportEvent = async (token: string, data: Record<string, unknown>) => {
+export const reportEvent = async (token: string | null, data: Record<string, unknown>) => {
   const response = await axios.post(`${API_BASE_URL}/api/event-reports`, data, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
   });
   return response.data;
 };

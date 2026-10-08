@@ -20,7 +20,7 @@ public class CouponIssueReportResponse {
 
     public CouponIssueReportResponse(CouponIssueReport report) {
         this.id = report.getId();
-        this.reporterId = report.getReporter().getId();
+        this.reporterId = report.getReporter() != null ? report.getReporter().getId() : null;
         this.couponId = report.getCoupon().getId();
         this.couponCode = report.getCoupon().getCode();
         this.korName = report.getCoupon().getGame().getKorName();

@@ -23,7 +23,7 @@ public class GameEventReportResponse {
 
     public GameEventReportResponse(GameEventReport report) {
         this.id = report.getId();
-        this.reporterId = report.getReporter().getId();
+        this.reporterId = report.getReporter() != null ? report.getReporter().getId() : null;
         this.gameId = report.getGame() != null ? report.getGame().getId() : null;
         this.korName = report.getKorName();
         this.title = report.getTitle();
