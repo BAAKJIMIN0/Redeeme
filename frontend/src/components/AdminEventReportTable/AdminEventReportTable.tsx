@@ -5,6 +5,7 @@ import { getEventReports, acceptEventReport, deleteEventReport } from '@/api/adm
 import { useGames } from '@/hooks/useGames';
 import { formatRelativeTime } from '@/utils/formatRelativeTime';
 import { formatEventTime } from '@/utils/formatEventTime';
+import SourceBadge from '@/components/SourceBadge/SourceBadge';
 import type { GameEventReport } from '@/types';
 
 function AdminEventReportTable() {
@@ -85,7 +86,7 @@ function AdminEventReportTable() {
                 })()}
               </td>
               <td>
-                <div>{report.title}</div>
+                <div><SourceBadge source={report.source} />{report.title}</div>
                 {report.description && (
                   <div className={styles.titleDescription}>{report.description}</div>
                 )}

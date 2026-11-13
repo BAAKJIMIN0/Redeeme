@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.redeeme.backend.domain.common.ReportSource;
 import com.redeeme.backend.domain.coupon.dto.CouponIssueReportRequest;
 import com.redeeme.backend.domain.coupon.dto.CouponIssueReportResponse;
 import com.redeeme.backend.domain.user.User;
@@ -31,6 +32,8 @@ public class CouponIssueReportService {
 
         CouponIssueReport report = new CouponIssueReport();
         report.setReporter(reporter);
+        // 출처는 요청의 source 값(AI 수집 스크립트만 "AI"를 보냄), 없으면 USER
+        report.setSource(dto.getSource() != null ? dto.getSource() : ReportSource.USER);
         report.setCoupon(coupon);
         report.setReason(dto.getReason());
         report.setDetail(dto.getDetail());

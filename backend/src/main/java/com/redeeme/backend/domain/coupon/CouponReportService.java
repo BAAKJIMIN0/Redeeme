@@ -3,6 +3,7 @@ package com.redeeme.backend.domain.coupon;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.redeeme.backend.domain.common.ReportSource;
 import com.redeeme.backend.domain.coupon.dto.CouponReportRequest;
 import com.redeeme.backend.domain.coupon.dto.CouponReportResponse;
 import com.redeeme.backend.domain.game.Game;
@@ -26,12 +27,13 @@ public class CouponReportService {
 
     @Transactional
     public void createReport(Long reporterId, CouponReportRequest dto) {
-        // 비로그인 제보 허용: reporterId가 없으면 reporter 없이 저장
         User reporter = reporterId == null ? null : userRepository.findById(reporterId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다: " + reporterId));
 
         CouponReport report = new CouponReport();
         report.setReporter(reporter);
+        // 출처는 요청의 source 값(AI 수집 스크립트만 "AI"를 보냄), 없으면 USER
+        report.setSource(dto.getSource() != null ? dto.getSource() : ReportSource.USER);
 
         if (dto.getGameId() != null && dto.getGameId() > 0) {
             Game game = gameRepository.findById(dto.getGameId())

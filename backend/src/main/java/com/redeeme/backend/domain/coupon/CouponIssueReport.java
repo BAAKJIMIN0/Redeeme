@@ -2,9 +2,12 @@ package com.redeeme.backend.domain.coupon;
 
 import java.time.LocalDateTime;
 
+import com.redeeme.backend.domain.common.ReportSource;
 import com.redeeme.backend.domain.user.User;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +44,10 @@ public class CouponIssueReport {
 
     @Column(columnDefinition = "TEXT")
     private String detail;
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "varchar(10) not null default 'USER'")
+    private ReportSource source = ReportSource.USER;
+
 
     private LocalDateTime createdAt;
 

@@ -2,6 +2,7 @@ package com.redeeme.backend.domain.coupon.dto;
 
 import java.time.LocalDateTime;
 
+import com.redeeme.backend.domain.common.ReportSource;
 import com.redeeme.backend.domain.coupon.CouponIssueReport;
 
 import lombok.Getter;
@@ -16,6 +17,7 @@ public class CouponIssueReportResponse {
     private final String server;
     private final String reason;
     private final String detail;
+    private final ReportSource source;
     private final LocalDateTime createdAt;
 
     public CouponIssueReportResponse(CouponIssueReport report) {
@@ -27,6 +29,7 @@ public class CouponIssueReportResponse {
         this.server = report.getCoupon().getServer();
         this.reason = report.getReason();
         this.detail = report.getDetail();
+        this.source = report.getSource() != null ? report.getSource() : ReportSource.USER;
         this.createdAt = report.getCreatedAt();
     }
 }

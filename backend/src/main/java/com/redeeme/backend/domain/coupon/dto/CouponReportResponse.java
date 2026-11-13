@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.redeeme.backend.domain.common.ReportSource;
 import com.redeeme.backend.domain.coupon.CouponReport;
 
 import lombok.Getter;
@@ -22,6 +23,7 @@ public class CouponReportResponse {
     private final List<Map<String, Object>> rewards;
     private final LocalDate expiredAt;
     private final String quickUrl;
+    private final ReportSource source;
     private final LocalDateTime createdAt;
 
     @SuppressWarnings("unchecked")
@@ -35,6 +37,7 @@ public class CouponReportResponse {
         this.description = report.getDescription();
         this.expiredAt = report.getExpiredAt();
         this.quickUrl = report.getQuickUrl();
+        this.source = report.getSource() != null ? report.getSource() : ReportSource.USER;
         this.createdAt = report.getCreatedAt();
 
         ObjectMapper mapper = new ObjectMapper();

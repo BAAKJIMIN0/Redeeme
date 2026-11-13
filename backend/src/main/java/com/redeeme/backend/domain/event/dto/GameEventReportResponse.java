@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import com.redeeme.backend.domain.common.ReportSource;
 import com.redeeme.backend.domain.event.GameEventReport;
 
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class GameEventReportResponse {
     private final LocalDate eventDate;
     private final LocalTime eventTime;
     private final String link;
+    private final ReportSource source;
     private final LocalDateTime createdAt;
 
     public GameEventReportResponse(GameEventReport report) {
@@ -31,6 +33,7 @@ public class GameEventReportResponse {
         this.eventDate = report.getEventDate();
         this.eventTime = report.getEventTime();
         this.link = report.getLink();
+        this.source = report.getSource() != null ? report.getSource() : ReportSource.USER;
         this.createdAt = report.getCreatedAt();
     }
 }

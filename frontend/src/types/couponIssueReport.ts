@@ -1,3 +1,5 @@
+import type { ReportSource } from '@/types/report';
+
 export interface CouponIssueReport {
   id: number;
   reporterId: number;
@@ -7,5 +9,6 @@ export interface CouponIssueReport {
   server: string;
   reason: string;
   detail?: string;
+  source: ReportSource;
   createdAt: string;
 }

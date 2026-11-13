@@ -2,6 +2,7 @@ package com.redeeme.backend.domain.event;
 
 import java.util.List;
 
+import com.redeeme.backend.domain.common.ReportSource;
 import com.redeeme.backend.domain.event.dto.GameEventReportRequest;
 import com.redeeme.backend.domain.event.dto.GameEventReportResponse;
 import com.redeeme.backend.domain.game.Game;
@@ -30,6 +31,8 @@ public class GameEventReportService {
 
         GameEventReport report = new GameEventReport();
         report.setReporter(reporter);
+        // 출처는 요청의 source 값(AI 수집 스크립트만 "AI"를 보냄), 없으면 USER
+        report.setSource(dto.getSource() != null ? dto.getSource() : ReportSource.USER);
 
         if (dto.getGameId() != null && dto.getGameId() > 0) {
             Game game = gameRepository.findById(dto.getGameId())

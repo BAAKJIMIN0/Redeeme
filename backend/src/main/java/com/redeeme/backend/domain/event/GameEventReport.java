@@ -4,10 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import com.redeeme.backend.domain.common.ReportSource;
 import com.redeeme.backend.domain.game.Game;
 import com.redeeme.backend.domain.user.User;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -44,6 +48,10 @@ public class GameEventReport {
     private LocalDate eventDate;
     private LocalTime eventTime;
     private String link;
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "varchar(10) not null default 'USER'")
+    private ReportSource source = ReportSource.USER;
+
     private LocalDateTime createdAt;
 
     @PrePersist

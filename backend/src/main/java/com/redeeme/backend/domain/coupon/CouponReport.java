@@ -7,10 +7,13 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.redeeme.backend.domain.common.ReportSource;
 import com.redeeme.backend.domain.game.Game;
 import com.redeeme.backend.domain.user.User;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -53,6 +56,10 @@ public class CouponReport {
 
     private LocalDate expiredAt;
     private String quickUrl;
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "varchar(10) not null default 'USER'")
+    private ReportSource source = ReportSource.USER;
+
     private LocalDateTime createdAt;
 
     @PrePersist

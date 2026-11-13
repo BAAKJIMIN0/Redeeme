@@ -3,6 +3,8 @@ package com.redeeme.backend.domain.event.dto;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import com.redeeme.backend.domain.common.ReportSource;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,4 +18,5 @@ public class GameEventReportRequest {
     private LocalDate eventDate;
     private LocalTime eventTime;
     private String link;
+    private ReportSource source; // "AI" | "USER"(생략 시 USER)
 }

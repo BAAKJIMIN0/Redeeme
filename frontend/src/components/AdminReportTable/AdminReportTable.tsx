@@ -4,7 +4,8 @@ import { useAuth } from '@/hooks/useAuth';
 import { getReports, acceptReport, deleteReport } from '@/api/admin';
 import { useGames } from '@/hooks/useGames';
 import { formatRelativeTime } from '@/utils/formatRelativeTime';
-import type { RewardItem } from '@/types';
+import SourceBadge from '@/components/SourceBadge/SourceBadge';
+import type { RewardItem, ReportSource } from '@/types';
 
 interface CouponReport {
   id: number;
@@ -17,6 +18,7 @@ interface CouponReport {
   rewards: RewardItem[];
   expiredAt?: string;
   quickUrl?: string;
+  source: ReportSource;
   createdAt: string;
 }
 
@@ -106,7 +108,7 @@ function AdminReportTable() {
               </td>
               <td>{report.server}</td>
               <td>
-                <div>{report.code}</div>
+                <div><SourceBadge source={report.source} />{report.code}</div>
                 {report.description && (
                   <div className={styles.codeDescription}>{report.description}</div>
                 )}

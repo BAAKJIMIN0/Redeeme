@@ -1,3 +1,5 @@
+import type { ReportSource } from '@/types/report';
+
 export interface GameEvent {
   id: number;
   gameId: number;
@@ -21,5 +23,6 @@ export interface GameEventReport {
   eventDate: string;
   eventTime: string | null;
   link: string | null;
+  source: ReportSource;
   createdAt: string;
 }

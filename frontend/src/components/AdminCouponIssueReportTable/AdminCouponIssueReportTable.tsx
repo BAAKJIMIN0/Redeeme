@@ -5,6 +5,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { getCouponIssueReports, deleteCouponIssueReport } from '@/api/admin';
 import { formatRelativeTime } from '@/utils/formatRelativeTime';
 import Pagination from '@/components/Pagination/Pagination';
+import SourceBadge from '@/components/SourceBadge/SourceBadge';
 import type { CouponIssueReport } from '@/types';
 
 const PAGE_SIZE = 35;
@@ -90,7 +91,7 @@ function AdminCouponIssueReportTable() {
                 <tr key={report.id}>
                   <td>{report.korName}</td>
                   <td>{report.server}</td>
-                  <td>{report.couponCode}</td>
+                  <td><SourceBadge source={report.source} />{report.couponCode}</td>
                   <td className={styles.reasonCell} onClick={() => toggleOpen(report.id)}>
                     {report.reason}
                   </td>

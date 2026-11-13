@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import com.redeeme.backend.domain.common.ReportSource;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,4 +20,5 @@ public class CouponReportRequest {
     private List<Map<String, Object>> rewards;
     private LocalDate expiredAt;
     private String quickUrl;
+    private ReportSource source; // "AI" | "USER"(생략 시 USER)
 }
